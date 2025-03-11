@@ -59,7 +59,7 @@ public class LoginView extends javax.swing.JFrame {
 
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLogin.setText("Iniciar Sesión");
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
@@ -81,8 +81,8 @@ public class LoginView extends javax.swing.JFrame {
         });
         jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 180, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\certifakt-soporte\\src\\main\\resources\\images\\logo.png")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, 80));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 310, 100));
 
         lblError.setForeground(new java.awt.Color(255, 51, 51));
         lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -97,7 +97,7 @@ public class LoginView extends javax.swing.JFrame {
         lblEnvironmentChange.setForeground(new java.awt.Color(0, 102, 255));
         lblEnvironmentChange.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEnvironmentChange.setText("¿Cambiar de ambiente?");
-        lblEnvironmentChange.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEnvironmentChange.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         lblEnvironmentChange.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblEnvironmentChangeMouseClicked(evt);

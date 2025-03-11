@@ -89,52 +89,52 @@ public class CompanyView extends javax.swing.JFrame {
 
         jLabel2.setText("Numero de RUC:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 30));
-        jPanel2.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 180, -1));
+        jPanel2.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, -1));
 
         jLabel9.setText("Telefono:");
         jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
-        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 170, -1));
+        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 170, -1));
 
         jLabel3.setText("Nombre comercial:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
-        jPanel2.add(txtNombreComercial, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 180, -1));
+        jPanel2.add(txtNombreComercial, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
 
         jLabel10.setText("Ose:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, -1, -1));
 
-        jPanel2.add(cmbOse, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 170, -1));
+        jPanel2.add(cmbOse, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 170, -1));
 
         jLabel4.setText("Razón social:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
-        jPanel2.add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 180, -1));
+        jPanel2.add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 180, -1));
 
         lblVerGuia.setText("Ver guia:");
         jPanel2.add(lblVerGuia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
-        jPanel2.add(ckbVerGuia, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, -1, -1));
+        jPanel2.add(ckbVerGuia, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, -1, -1));
 
         jLabel5.setText("Direccion:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 180, -1));
+        jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 180, -1));
 
         lblVerOtroComprobante.setText("Ver otro comprobante:");
         jPanel2.add(lblVerOtroComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, -1, -1));
-        jPanel2.add(ckbVerOtroComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, -1, -1));
+        jPanel2.add(ckbVerOtroComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, -1, -1));
 
         jLabel6.setText("Correo:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
-        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 180, -1));
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 180, -1));
 
         lblVerCotizacion.setText("Ver cotizacion:");
         jPanel2.add(lblVerCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, -1, -1));
-        jPanel2.add(ckbVerCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
+        jPanel2.add(ckbVerCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
 
         jLabel7.setText("Envio automatico sunat:");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
-        jPanel2.add(ckbEnvioAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
+        jPanel2.add(ckbEnvioAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
 
         jLabel8.setText("Estado:");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
-        jPanel2.add(ckbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, -1, -1));
+        jPanel2.add(ckbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -171,7 +171,7 @@ public class CompanyView extends javax.swing.JFrame {
         btnCerrar.setBackground(new java.awt.Color(204, 51, 0));
         btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setText("Volver");
-        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
@@ -182,7 +182,7 @@ public class CompanyView extends javax.swing.JFrame {
         btnGuardar.setBackground(new java.awt.Color(0, 102, 204));
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);

@@ -18,6 +18,7 @@ import com.mycompany.certifakt.soporte.payload.response.CompanyResponse;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
 import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
 import com.mycompany.certifakt.soporte.payload.response.UserLoginResponse;
+import com.mycompany.certifakt.soporte.payload.response.UserTokenResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class CertifaktService {
     
     private static final String VOUCHER_ENDPOINT = "api/support/payment-voucher";
     private static final String COMPANY_ENDPOINT = "api/support/company";
+    private static final String TOKEN_ENDPOINT = "api/usuarios/generar-token-api";
     
     private static final Gson gson = new Gson();
     private static final OkHttpClient client = new OkHttpClient(); 
@@ -136,6 +138,23 @@ public class CertifaktService {
             e.printStackTrace();
         }
         return null;
+    }
+    
+    public static String getUserToken(Long userId) {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        Map<String, String> params = new HashMap<>();
+        UserTokenResponse userTokenResponse = null;
+        try {
+            userTokenResponse = MethodHttp.get(API_URL+TOKEN_ENDPOINT+"/"+userId, params, token, UserTokenResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(userTokenResponse == null) {
+            return null;
+        }
+        String userToken = userTokenResponse.getToken();
+        return userToken;
     }
     
     

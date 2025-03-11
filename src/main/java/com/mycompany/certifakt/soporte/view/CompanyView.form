@@ -80,7 +80,7 @@
             <Component class="javax.swing.JTextField" name="txtRuc">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="50" width="180" height="-1"/>
+                  <AbsoluteConstraints x="190" y="50" width="180" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -97,7 +97,7 @@
             <Component class="javax.swing.JTextField" name="txtTelefono">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="530" y="100" width="170" height="-1"/>
+                  <AbsoluteConstraints x="570" y="100" width="170" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -114,7 +114,7 @@
             <Component class="javax.swing.JTextField" name="txtNombreComercial">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="100" width="180" height="-1"/>
+                  <AbsoluteConstraints x="190" y="100" width="180" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -139,7 +139,7 @@
               </AuxValues>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="530" y="150" width="170" height="-1"/>
+                  <AbsoluteConstraints x="570" y="150" width="170" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -156,7 +156,7 @@
             <Component class="javax.swing.JTextField" name="txtRazonSocial">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="150" width="180" height="-1"/>
+                  <AbsoluteConstraints x="190" y="150" width="180" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -173,7 +173,7 @@
             <Component class="javax.swing.JCheckBox" name="ckbVerGuia">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="530" y="200" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="570" y="200" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -190,7 +190,7 @@
             <Component class="javax.swing.JTextField" name="txtDireccion">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="200" width="180" height="-1"/>
+                  <AbsoluteConstraints x="190" y="200" width="180" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -207,7 +207,7 @@
             <Component class="javax.swing.JCheckBox" name="ckbVerOtroComprobante">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="530" y="250" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="570" y="250" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -224,7 +224,7 @@
             <Component class="javax.swing.JTextField" name="txtCorreo">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="250" width="180" height="-1"/>
+                  <AbsoluteConstraints x="190" y="250" width="180" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -241,7 +241,7 @@
             <Component class="javax.swing.JCheckBox" name="ckbVerCotizacion">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="530" y="300" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="570" y="300" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -258,7 +258,7 @@
             <Component class="javax.swing.JCheckBox" name="ckbEnvioAutomatico">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="170" y="300" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="190" y="300" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -275,7 +275,7 @@
             <Component class="javax.swing.JCheckBox" name="ckbEstado">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="530" y="50" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="570" y="50" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -376,7 +376,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Volver"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
@@ -398,7 +398,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Guardar"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-              <Color id="Hand Cursor"/>
+              <Color id="Cursor Por defecto"/>
             </Property>
           </Properties>
           <Events>
