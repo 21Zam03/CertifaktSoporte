@@ -10,7 +10,7 @@ import com.google.gson.JsonParser;
 import com.mycompany.certifakt.soporte.config.ConfigFile;
 import com.mycompany.certifakt.soporte.httpmethods.MethodHttp;
 import com.mycompany.certifakt.soporte.payload.LoginRequest;
-import com.mycompany.certifakt.soporte.payload.PaymentVoucher;
+import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
 import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
@@ -104,40 +104,27 @@ public class CertifaktService {
         return supportResponse.getIsSuccess();
     }
     
-    public static PaymentVoucher getPaymentVoucher(SupportConsultRequest supportConsultRequest) {
-        String bearerToken = ConfigFile.obtenerToken();
-        String apiUrl = ConfigFile.obtenerUrl();
-        OkHttpClient client = new OkHttpClient();
+    public static PaymentVoucherDto getPaymentVoucher(SupportConsultRequest supportConsultRequest) {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
         
-        HttpUrl url = HttpUrl.parse(apiUrl+VOUCHER_ENDPOINT).newBuilder()
-                .addQueryParameter("rucEmisor", supportConsultRequest.getRucEmisor())
-                .addQueryParameter("tipoComprobante", supportConsultRequest.getTipoComprobante())
-                .addQueryParameter("serie", supportConsultRequest.getSerie())
-                .addQueryParameter("numero", supportConsultRequest.getNumero().toString())
-                .build();
-        
-        Request request = new Request.Builder()
-                .url(url)
-                .get()
-                .addHeader("Authorization", "Bearer " + bearerToken)
-                .addHeader("Accept", "application/json")
-                .build();
-        System.out.println("REQUEST: "+request);
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
-                String responseBody = response.body().string();
-                JsonObject jsonObject = JsonParser.parseString(responseBody).getAsJsonObject();
-                JsonObject paymentVoucherJson = jsonObject.getAsJsonObject("data").getAsJsonObject("paymentVoucher");
-                Gson gson = new Gson();
-                PaymentVoucher paymentVoucher = gson.fromJson(paymentVoucherJson, PaymentVoucher.class);
-                return paymentVoucher;
-            } else {
-                System.out.println("Error en la petición: " + response.code());
-            }
-        } catch (Exception e) {
+        Map<String, String> params = new HashMap<>();
+        params.put("rucEmisor", supportConsultRequest.getRucEmisor());
+        params.put("tipoComprobante", supportConsultRequest.getTipoComprobante());
+        params.put("serie", supportConsultRequest.getSerie());
+        params.put("numero", supportConsultRequest.getNumero().toString());
+        SupportResponse supportResponse = null;
+        try {
+            supportResponse = MethodHttp.get(API_URL+VOUCHER_ENDPOINT, params, token, SupportResponse.class);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        if(supportResponse == null) {
+            return null;
+        }
+        System.out.println("DATA: "+supportResponse.getData().getPaymentVoucherDto().getDenominacionReceptor());
+        PaymentVoucherDto paymentVoucherDto = (PaymentVoucherDto) supportResponse.getData().getPaymentVoucherDto();
+        return paymentVoucherDto;
     }
     
     public static String getUserToken(Long userId) {

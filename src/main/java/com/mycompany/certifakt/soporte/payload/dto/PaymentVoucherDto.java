@@ -2,19 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.certifakt.soporte.payload;
+package com.mycompany.certifakt.soporte.payload.dto;
 
-public class PaymentVoucher {
+public class PaymentVoucherDto {
     
+    private Long paymentVoucherId;
     private String fechaEmision;
     private String tipoComprobante;
-    private String numero;
-    private String receptor;
+    private String serie;
+    private Integer numero;
+    private String numDocIdentReceptor;
+    private String denominacionReceptor;
     private Double montoTotalVenta;
     private String estado;
     private String estadoSunat;
 
-    public PaymentVoucher() {
+    public PaymentVoucherDto() {
+    }
+    
+    public Long getPaymentVoucherId() {
+        return paymentVoucherId;
+    }
+
+    public void setPaymentVoucherId(Long paymentVoucherId) {
+        this.paymentVoucherId = paymentVoucherId;
     }
 
     public String getFechaEmision() {
@@ -33,20 +44,36 @@ public class PaymentVoucher {
         this.tipoComprobante = tipoComprobante;
     }
 
-    public String getNumero() {
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
-    public String getReceptor() {
-        return receptor;
+    public String getNumDocIdentReceptor() {
+        return numDocIdentReceptor;
     }
 
-    public void setReceptor(String receptor) {
-        this.receptor = receptor;
+    public void setNumDocIdentReceptor(String numDocIdentReceptor) {
+        this.numDocIdentReceptor = numDocIdentReceptor;
+    }
+
+    public String getDenominacionReceptor() {
+        return denominacionReceptor;
+    }
+
+    public void setDenominacionReceptor(String denominacionReceptor) {
+        this.denominacionReceptor = denominacionReceptor;
     }
 
     public Double getMontoTotalVenta() {
@@ -72,10 +99,7 @@ public class PaymentVoucher {
     public void setEstadoSunat(String estadoSunat) {
         this.estadoSunat = estadoSunat;
     }
+
     
-    @Override
-    public String toString() {
-        return "PaymentVoucher{" + "fechaEmision=" + fechaEmision + ", tipoComprobante=" + tipoComprobante + ", numero=" + numero + ", receptor=" + receptor + ", montoTotalVenta=" + montoTotalVenta + ", estado=" + estado + ", estadoSunat=" + estadoSunat + '}';
-    }
     
 }

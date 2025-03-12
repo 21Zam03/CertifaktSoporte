@@ -38,5 +38,10 @@ public class SupportResponse {
     public void setData(DataWrapper data) {
         this.data = data;
     }
- 
+
+    @Override
+    public String toString() {
+        return "SupportResponse{" + "message=" + message + ", isSuccess=" + isSuccess + ", data=" + data + '}';
+    }
+    
 }

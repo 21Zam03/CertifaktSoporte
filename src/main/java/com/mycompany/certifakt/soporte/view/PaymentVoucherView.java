@@ -4,7 +4,8 @@
  */
 package com.mycompany.certifakt.soporte.view;
 
-import com.mycompany.certifakt.soporte.payload.PaymentVoucher;
+import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
+import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -13,18 +14,22 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     
     Map<String, String> tipoMap = new HashMap<>();
     
-    public PaymentVoucherView(PaymentVoucher paymentVoucher) {
+    public PaymentVoucherView(PaymentVoucherDto paymentVoucher) {
         tipoMap.put("01", "Factura");
         tipoMap.put("03", "Boleta");
         tipoMap.put("07", "Nota de crédito");
         tipoMap.put("08", "Nota de debito");
         initComponents();
         loadImageIcon();
+        this.setResizable(false);
+        btnAtras.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         cmbTipo.addItem("Factura");
         cmbTipo.addItem("Boleta");
         cmbTipo.addItem("Nota de credito");
         cmbTipo.addItem("Nota de debito");
-        cmbTipo.setSelectedItem(paymentVoucher.getTipoComprobante());
+        
+       
         cmbEstado.addItem("01");
         cmbEstado.addItem("02");
         cmbEstado.addItem("05");
@@ -35,10 +40,15 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         cmbEstadoSunat.addItem("RECHA");
         cmbEstadoSunat.addItem("ANULA");
         cmbEstadoSunat.setSelectedItem(paymentVoucher.getEstadoSunat());
+        
         txtFechaEmision.setText(paymentVoucher.getFechaEmision());
-        txtNumero.setText(paymentVoucher.getNumero());
-        txtReceptor.setText(paymentVoucher.getReceptor());
+        cmbTipo.setSelectedItem(paymentVoucher.getTipoComprobante());
+        txtSerie.setText(paymentVoucher.getSerie());
+        txtNumero.setText(paymentVoucher.getNumero().toString());
+        txtNumeroReceptor.setText(paymentVoucher.getNumDocIdentReceptor());
+        txtDenominacionReceptor.setText(paymentVoucher.getDenominacionReceptor());
         txtMontoTotalVenta.setText(paymentVoucher.getMontoTotalVenta().toString());
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -46,45 +56,38 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btnAtras = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         txtFechaEmision = new javax.swing.JTextField();
-        txtNumero = new javax.swing.JTextField();
-        txtReceptor = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        txtSerie = new javax.swing.JTextField();
+        txtNumeroReceptor = new javax.swing.JTextField();
         txtMontoTotalVenta = new javax.swing.JTextField();
         cmbEstado = new javax.swing.JComboBox<>();
         cmbEstadoSunat = new javax.swing.JComboBox<>();
-        btnGuardar = new javax.swing.JButton();
-        btnAtras = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblSerie = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        lblNumDocIdentReceptor = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        txtNumero = new javax.swing.JTextField();
+        txtDenominacionReceptor = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Comprobante electrónico");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, 30));
-        jPanel1.add(txtFechaEmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 210, -1));
-        jPanel1.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 210, -1));
-        jPanel1.add(txtReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 210, -1));
-
-        jPanel1.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 210, -1));
-        jPanel1.add(txtMontoTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 210, -1));
-
-        jPanel1.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 210, -1));
-
-        jPanel1.add(cmbEstadoSunat, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 210, -1));
-
-        btnGuardar.setText("Guardar");
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, -1, -1));
 
         btnAtras.setText("Atras");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -92,34 +95,90 @@ public class PaymentVoucherView extends javax.swing.JFrame {
                 btnAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, -1, -1));
+        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 30, 100, 30));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 204)));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(txtFechaEmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, -1));
 
         jLabel2.setText("Fecha Emisión:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 130, 20));
+
+        jPanel2.add(cmbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
 
         jLabel3.setText("Tipo Comprobante:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, 20));
+        jPanel2.add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 180, -1));
+        jPanel2.add(txtNumeroReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 180, -1));
+        jPanel2.add(txtMontoTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 210, -1));
 
-        jLabel4.setText("Numero:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        jPanel2.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 210, -1));
 
-        jLabel5.setText("Receptor:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
+        jPanel2.add(cmbEstadoSunat, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 210, -1));
+
+        lblSerie.setText("Serie:");
+        jPanel2.add(lblSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 140, 20));
+
+        jLabel5.setText("D. Receptor:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 120, 20));
 
         jLabel6.setText("MontoTotal:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 120, 20));
 
         jLabel7.setText("Estado:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 120, 20));
 
         jLabel8.setText("Estado Sunat:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 200, 120, 20));
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 204));
+
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Resultado de la busqueda");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(372, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 40));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 760, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 770, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 760, 10));
+
+        lblNumDocIdentReceptor.setText("N° Receptor:");
+        jPanel2.add(lblNumDocIdentReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 160, 20));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 760, 10));
+
+        jLabel10.setText("Numero:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, 20));
+        jPanel2.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 180, -1));
+        jPanel2.add(txtDenominacionReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 210, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 760, 300));
+
+        btnGuardar.setText("Guardar");
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,18 +206,28 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbEstadoSunat;
     private javax.swing.JComboBox<String> cmbTipo;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JLabel lblNumDocIdentReceptor;
+    private javax.swing.JLabel lblSerie;
+    private javax.swing.JTextField txtDenominacionReceptor;
     private javax.swing.JTextField txtFechaEmision;
     private javax.swing.JTextField txtMontoTotalVenta;
     private javax.swing.JTextField txtNumero;
-    private javax.swing.JTextField txtReceptor;
+    private javax.swing.JTextField txtNumeroReceptor;
+    private javax.swing.JTextField txtSerie;
     // End of variables declaration//GEN-END:variables
 }
