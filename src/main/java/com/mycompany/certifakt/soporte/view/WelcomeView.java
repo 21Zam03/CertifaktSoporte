@@ -9,6 +9,7 @@ import com.mycompany.certifakt.soporte.config.ConfigFile;
 import com.mycompany.certifakt.soporte.payload.PaymentVoucher;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Map;
@@ -132,6 +133,7 @@ public class WelcomeView extends javax.swing.JFrame {
         jpÇlients.setBackground(new java.awt.Color(255, 255, 255));
 
         lblCompany.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCompany.setForeground(new java.awt.Color(153, 153, 153));
         lblCompany.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCompany.setText("Consulta Empresas");
 
@@ -154,12 +156,28 @@ public class WelcomeView extends javax.swing.JFrame {
         lblCompanyName.setText("Nombre");
         lblCompanyName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblCompanyName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblCompanyName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCompanyNameMouseClicked(evt);
+            }
+        });
         jPanel4.add(lblCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 80, 30));
 
         lblCompanyRuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCompanyRuc.setText("Ruc");
         lblCompanyRuc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblCompanyRuc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblCompanyRuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCompanyRucMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCompanyRucMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCompanyRucMouseExited(evt);
+            }
+        });
         jPanel4.add(lblCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 80, 30));
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 204));
@@ -749,8 +767,27 @@ public class WelcomeView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGenerarTokenActionPerformed
 
     private void btnGuiaConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiaConsultarActionPerformed
-        // TODO add your handling code here:
+        lblCompanyRuc.setBackground(Color.BLUE);
     }//GEN-LAST:event_btnGuiaConsultarActionPerformed
+
+    private void lblCompanyRucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyRucMouseEntered
+        
+    }//GEN-LAST:event_lblCompanyRucMouseEntered
+
+    private void lblCompanyRucMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyRucMouseExited
+        
+    }//GEN-LAST:event_lblCompanyRucMouseExited
+
+    private void lblCompanyRucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyRucMouseClicked
+        lblCompanyRuc.setBackground(Color.BLUE);
+        lblCompanyName.setBackground(Color.WHITE);
+    }//GEN-LAST:event_lblCompanyRucMouseClicked
+
+    private void lblCompanyNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyNameMouseClicked
+        lblCompanyName.setBackground(Color.BLUE);
+        lblCompanyRuc.setBackground(Color.WHITE);
+        
+    }//GEN-LAST:event_lblCompanyNameMouseClicked
     
     private void postEnvironment() {
         String url = ConfigFile.obtenerUrl();
