@@ -223,7 +223,7 @@ public class CompanyView extends javax.swing.JFrame {
         companyRequest.setViewGuia(ckbVerGuia.isSelected());
         companyRequest.setViewOtroComprobante(ckbVerOtroComprobante.isSelected());
         companyRequest.setViewCotizacion(ckbVerCotizacion.isSelected());
-        System.out.println("OSE: "+companyRequest.getOseId());
+
         Boolean isUpdated = CertifaktService.updateCompany(companyRequest);
         if(isUpdated != null && isUpdated == true) {
             JOptionPane.showMessageDialog(null, "Los datos se actualizaron correctamente.", "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);

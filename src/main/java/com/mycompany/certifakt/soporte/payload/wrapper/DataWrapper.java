@@ -6,6 +6,7 @@ package com.mycompany.certifakt.soporte.payload.wrapper;
 
 import com.google.gson.annotations.SerializedName;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
+import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 
 public class DataWrapper {
@@ -15,9 +16,18 @@ public class DataWrapper {
     @SerializedName("paymentVoucher")
     private PaymentVoucherDto paymentVoucherDto;
     
+    private GuiaDto guiaDto;
     
     public CompanyDto getCompanyDto() {
         return companyDto;
+    }
+
+    public GuiaDto getGuiaDto() {
+        return guiaDto;
+    }
+
+    public void setGuiaDto(GuiaDto guiaDto) {
+        this.guiaDto = guiaDto;
     }
 
     public void setCompanyDto(CompanyDto companyDto) {

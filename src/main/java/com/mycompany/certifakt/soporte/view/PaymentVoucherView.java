@@ -4,17 +4,22 @@
  */
 package com.mycompany.certifakt.soporte.view;
 
+import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
+import com.mycompany.certifakt.soporte.payload.request.PaymentVoucherRequest;
 import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class PaymentVoucherView extends javax.swing.JFrame {
     
     Map<String, String> tipoMap = new HashMap<>();
+    private final Long paymentVoucherId;
     
     public PaymentVoucherView(PaymentVoucherDto paymentVoucher) {
+        this.paymentVoucherId = paymentVoucher.getPaymentVoucherId();
         tipoMap.put("01", "Factura");
         tipoMap.put("03", "Boleta");
         tipoMap.put("07", "Nota de crédito");
@@ -34,7 +39,7 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         cmbEstado.addItem("02");
         cmbEstado.addItem("05");
         cmbEstado.addItem("08");
-        cmbEstado.setSelectedItem(paymentVoucher.getEstado());
+        cmbEstado.addItem("09");
         cmbEstadoSunat.addItem("N_ENV");
         cmbEstadoSunat.addItem("ACEPT");
         cmbEstadoSunat.addItem("RECHA");
@@ -166,7 +171,7 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 760, 10));
 
         jLabel10.setText("Numero:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, 20));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 160, 20));
         jPanel2.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 180, -1));
         jPanel2.add(txtDenominacionReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 210, -1));
 
@@ -203,6 +208,31 @@ public class PaymentVoucherView extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         /*Servicio de guardar*/
+       
+        PaymentVoucherRequest paymentVoucherRequest = new PaymentVoucherRequest();
+        paymentVoucherRequest.setPaymentVoucherId(paymentVoucherId);
+        paymentVoucherRequest.setFechaEmision(txtFechaEmision.getText());
+        paymentVoucherRequest.setTipoComprobante(String.valueOf(cmbTipo.getSelectedItem()));
+        paymentVoucherRequest.setSerie(txtSerie.getText());
+        paymentVoucherRequest.setNumero(Integer.valueOf(txtNumero.getText()));
+        paymentVoucherRequest.setNumDocIdentReceptor(txtNumeroReceptor.getText());
+        paymentVoucherRequest.setDenominacionReceptor(txtDenominacionReceptor.getText());
+        paymentVoucherRequest.setMontoTotalVenta(Double.valueOf(txtMontoTotalVenta.getText()));
+        paymentVoucherRequest.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
+        paymentVoucherRequest.setEstadoSunat(String.valueOf(cmbEstadoSunat.getSelectedItem()));
+        
+        System.out.println("Voucher: "+ paymentVoucherRequest.toString());
+        
+        Boolean isUpdated = CertifaktService.updatePaymentVoucher(paymentVoucherRequest);
+        if(isUpdated != null && isUpdated == true) {
+            JOptionPane.showMessageDialog(null, "Los datos se actualizaron correctamente.", "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            WelcomeView welcomeView = new WelcomeView();
+            welcomeView.setVisible(true);
+            welcomeView.setLocationRelativeTo(null);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
     
     private void loadImageIcon() {

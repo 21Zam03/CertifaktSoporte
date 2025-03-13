@@ -12,8 +12,10 @@ import com.mycompany.certifakt.soporte.httpmethods.MethodHttp;
 import com.mycompany.certifakt.soporte.payload.LoginRequest;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
+import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
 import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
+import com.mycompany.certifakt.soporte.payload.request.PaymentVoucherRequest;
 import com.mycompany.certifakt.soporte.payload.response.CompanyResponse;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
 import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
@@ -35,6 +37,7 @@ public class CertifaktService {
     private static final String VOUCHER_ENDPOINT = "api/support/payment-voucher";
     private static final String COMPANY_ENDPOINT = "api/support/company";
     private static final String TOKEN_ENDPOINT = "api/usuarios/generar-token-api";
+    private static final String GUIA_ENDPOINT = "api/support/guia";
     
     private static final Gson gson = new Gson();
     private static final OkHttpClient client = new OkHttpClient(); 
@@ -127,6 +130,43 @@ public class CertifaktService {
         System.out.println("DATA: "+supportResponse.getData().getPaymentVoucherDto().getDenominacionReceptor());
         PaymentVoucherDto paymentVoucherDto = (PaymentVoucherDto) supportResponse.getData().getPaymentVoucherDto();
         return paymentVoucherDto;
+    }
+    
+    public static Boolean updatePaymentVoucher(PaymentVoucherRequest paymentVoucherRequest) {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        SupportResponse supportResponse = null;
+        try {
+           supportResponse = MethodHttp.put(API_URL+VOUCHER_ENDPOINT, token, paymentVoucherRequest, SupportResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        if(supportResponse == null) {
+            return null;
+        }
+        return supportResponse.getIsSuccess();
+    }
+    
+    public static GuiaDto getGuia(SupportConsultRequest supportConsultRequest) {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        Map<String, String> params = new HashMap<>();
+        params.put("ruc", supportConsultRequest.getRucEmisor());
+        params.put("tipoComprobante", supportConsultRequest.getTipoComprobante());
+        params.put("serie", supportConsultRequest.getSerie());
+        params.put("numero", supportConsultRequest.getNumero().toString());
+        SupportResponse supportResponse = null;
+        try {
+            supportResponse = MethodHttp.get(API_URL+GUIA_ENDPOINT, params, token, SupportResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(supportResponse == null) {
+            return null;
+        }
+        GuiaDto guiaDto = (GuiaDto) supportResponse.getData().getGuiaDto();
+        return guiaDto;
     }
     
     public static String getUserToken(Long userId) {
