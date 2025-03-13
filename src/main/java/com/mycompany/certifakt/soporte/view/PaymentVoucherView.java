@@ -48,7 +48,8 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         txtNumeroReceptor.setText(paymentVoucher.getNumDocIdentReceptor());
         txtDenominacionReceptor.setText(paymentVoucher.getDenominacionReceptor());
         txtMontoTotalVenta.setText(paymentVoucher.getMontoTotalVenta().toString());
-        
+        cmbEstado.setSelectedItem(paymentVoucher.getEstado());
+        cmbEstadoSunat.setSelectedItem(paymentVoucher.getEstadoSunat());
     }
 
     @SuppressWarnings("unchecked")
@@ -172,6 +173,11 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 760, 300));
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -194,6 +200,10 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         welcomeView.setVisible(true);
         welcomeView.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnAtrasActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        /*Servicio de guardar*/
+    }//GEN-LAST:event_btnGuardarActionPerformed
     
     private void loadImageIcon() {
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/icono.png"));

@@ -62,13 +62,15 @@ public class CertifaktService {
         } 
         Map<String, String> params = new HashMap<>();
         String API_URL = ConfigFile.obtenerUrl();
+        UserLoginResponse userLoginResponse = null;
         try {
-            UserLoginResponse userLoginResponse = MethodHttp.get(API_URL+VALIDATE_ENDPOINT, params, token, UserLoginResponse.class);
+            userLoginResponse = MethodHttp.get(API_URL+VALIDATE_ENDPOINT, params, token, UserLoginResponse.class);
             System.out.println("Usuario logueado: " + userLoginResponse.getFullName());
+            return new UserDto();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-        return new UserDto();
     }
     
     public static CompanyDto getCompany(String ruc) {
