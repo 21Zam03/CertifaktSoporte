@@ -4,20 +4,57 @@
  */
 package com.mycompany.certifakt.soporte.view;
 
+import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.payload.request.GuiaRequest;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
+import java.awt.Cursor;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 public class GuiaView extends javax.swing.JFrame {
     
+    Map<String, String> tipoMap = new HashMap<>();
     private final Long guiaId;
     
     public GuiaView(GuiaDto guiaDto) {
         this.guiaId = guiaDto.getGuiaId();
+        tipoMap.put("09", "Guia de remision remitente");
+        tipoMap.put("31", "Guia de remision transportista");
         initComponents();
         loadImageIcon();
         this.setResizable(false);
+        btnAtras.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        cmbTipo.addItem("Guia de remision remitente");
+        cmbTipo.addItem("Guia de remision transportista");
+        cmbEstado.addItem("01");
+        cmbEstado.addItem("02");
+        cmbEstado.addItem("05");
+        cmbEstado.addItem("07");
+        cmbEstado.addItem("08");
+        cmbEstado.addItem("09");
+        cmbEstadoSunat.addItem("N_ENV");
+        cmbEstadoSunat.addItem("ACEPT");
+        cmbEstadoSunat.addItem("RECHA");
+        cmbEstadoSunat.addItem("ANULA");
+        
+        /*SETEAMOS LOS DATOS*/
+        txtFechaEmision.setText(guiaDto.getFechaEmision());
+        cmbTipo.setSelectedItem(tipoMap.get(guiaDto.getTipoComprobante()));
+        txtSerie.setText(guiaDto.getSerie());
+        txtNumero.setText(String.valueOf(guiaDto.getNumero()));
+        txtNumeroRemitente.setText(guiaDto.getNumDocumIdentRemit());
+        txtDenominacionRemitente.setText(guiaDto.getDenominacionRemit());
+        txtNumeroReceptor.setText(guiaDto.getNumDocumIdentDestin());
+        txtDenominacionReceptor.setText(guiaDto.getDenominacionDestin());
+        txtPesoTotal.setText(String.valueOf(guiaDto.getPesoTotal()));
+        cmbEstado.setSelectedItem(guiaDto.getEstado());
+        cmbEstadoSunat.setSelectedItem(guiaDto.getEstadoSunat());
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -33,8 +70,8 @@ public class GuiaView extends javax.swing.JFrame {
         cmbTipo = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
-        txtNumeroReceptor = new javax.swing.JTextField();
-        txtMontoTotalVenta = new javax.swing.JTextField();
+        txtNumeroRemitente = new javax.swing.JTextField();
+        txtPesoTotal = new javax.swing.JTextField();
         cmbEstado = new javax.swing.JComboBox<>();
         cmbEstadoSunat = new javax.swing.JComboBox<>();
         lblSerie = new javax.swing.JLabel();
@@ -51,12 +88,12 @@ public class GuiaView extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
-        txtDenominacionReceptor = new javax.swing.JTextField();
+        txtDenominacionRemitente = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         lblNumDocIdentReceptor1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNumeroReceptor = new javax.swing.JTextField();
         lblNumDocIdentReceptor2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtDenominacionReceptor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,8 +130,8 @@ public class GuiaView extends javax.swing.JFrame {
         jLabel3.setText("Tipo Comprobante:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, 20));
         jPanel2.add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 180, -1));
-        jPanel2.add(txtNumeroReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 180, -1));
-        jPanel2.add(txtMontoTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 210, -1));
+        jPanel2.add(txtNumeroRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 180, -1));
+        jPanel2.add(txtPesoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, 210, -1));
 
         jPanel2.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 210, 210, -1));
 
@@ -106,7 +143,7 @@ public class GuiaView extends javax.swing.JFrame {
         jLabel5.setText("D. Remitente");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 120, 20));
 
-        jLabel6.setText("MontoTotal:");
+        jLabel6.setText("Peso Total:");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 120, 20));
 
         jLabel7.setText("Estado:");
@@ -149,16 +186,16 @@ public class GuiaView extends javax.swing.JFrame {
         jLabel10.setText("Numero:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 160, 20));
         jPanel2.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 180, -1));
-        jPanel2.add(txtDenominacionReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 180, -1));
+        jPanel2.add(txtDenominacionRemitente, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 180, -1));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 760, 10));
 
         lblNumDocIdentReceptor1.setText("N° Remitente");
         jPanel2.add(lblNumDocIdentReceptor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 160, 20));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 210, -1));
+        jPanel2.add(txtNumeroReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 50, 210, -1));
 
         lblNumDocIdentReceptor2.setText("N° Receptor");
         jPanel2.add(lblNumDocIdentReceptor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 110, 20));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 210, -1));
+        jPanel2.add(txtDenominacionReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 210, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 760, 350));
 
@@ -192,18 +229,18 @@ public class GuiaView extends javax.swing.JFrame {
         guiaRequest.setTipoComprobante(String.valueOf(cmbTipo.getSelectedItem()));
         guiaRequest.setSerie(txtSerie.getText());
         guiaRequest.setNumero(Integer.valueOf(txtNumero.getText()));
+        guiaRequest.setNumDocumIdentRemit(txtNumeroRemitente.getText());
+        guiaRequest.setDenominacionRemit(txtDenominacionRemitente.getText());
+        guiaRequest.setNumDocumIdentDestin(txtNumeroReceptor.getText());
+        guiaRequest.setDenominacionDestin(txtDenominacionReceptor.getText());
+        guiaRequest.setPesoTotal(Double.valueOf(txtPesoTotal.getText()));
+        guiaRequest.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
+        guiaRequest.setEstadoSunat(String.valueOf(cmbEstadoSunat.getSelectedItem()));
         
-        //guiaRequest.setNumDocIdentReceptor(txtNumeroReceptor.getText());
-        //paymentVoucherRequest.setDenominacionReceptor(txtDenominacionReceptor.getText());
         
-        //paymentVoucherRequest.setMontoTotalVenta(Double.valueOf(txtMontoTotalVenta.getText()));
-        //paymentVoucherRequest.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
-        //paymentVoucherRequest.setEstadoSunat(String.valueOf(cmbEstadoSunat.getSelectedItem()));
+        System.out.println("Guia: "+ guiaRequest.toString());
 
-        /*
-        System.out.println("Voucher: "+ paymentVoucherRequest.toString());
-
-        Boolean isUpdated = CertifaktService.updatePaymentVoucher(paymentVoucherRequest);
+        Boolean isUpdated = CertifaktService.updateGuia(guiaRequest);
         if(isUpdated != null && isUpdated == true) {
             JOptionPane.showMessageDialog(null, "Los datos se actualizaron correctamente.", "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -212,7 +249,7 @@ public class GuiaView extends javax.swing.JFrame {
             welcomeView.setLocationRelativeTo(null);
         } else {
             JOptionPane.showMessageDialog(null, "Error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void loadImageIcon() {
@@ -241,17 +278,17 @@ public class GuiaView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblNumDocIdentReceptor;
     private javax.swing.JLabel lblNumDocIdentReceptor1;
     private javax.swing.JLabel lblNumDocIdentReceptor2;
     private javax.swing.JLabel lblSerie;
     private javax.swing.JTextField txtDenominacionReceptor;
+    private javax.swing.JTextField txtDenominacionRemitente;
     private javax.swing.JTextField txtFechaEmision;
-    private javax.swing.JTextField txtMontoTotalVenta;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtNumeroReceptor;
+    private javax.swing.JTextField txtNumeroRemitente;
+    private javax.swing.JTextField txtPesoTotal;
     private javax.swing.JTextField txtSerie;
     // End of variables declaration//GEN-END:variables
 }

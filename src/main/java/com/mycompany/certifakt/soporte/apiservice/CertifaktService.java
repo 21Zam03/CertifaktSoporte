@@ -15,6 +15,7 @@ import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
 import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
+import com.mycompany.certifakt.soporte.payload.request.GuiaRequest;
 import com.mycompany.certifakt.soporte.payload.request.PaymentVoucherRequest;
 import com.mycompany.certifakt.soporte.payload.response.CompanyResponse;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
@@ -24,10 +25,7 @@ import com.mycompany.certifakt.soporte.payload.response.UserTokenResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class CertifaktService {
         
@@ -167,6 +165,21 @@ public class CertifaktService {
         }
         GuiaDto guiaDto = (GuiaDto) supportResponse.getData().getGuiaDto();
         return guiaDto;
+    }
+    
+    public static Boolean updateGuia(GuiaRequest guiaRequest) {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        SupportResponse supportResponse = null;
+        try {
+            supportResponse = MethodHttp.put(API_URL+GUIA_ENDPOINT, token, guiaRequest, SupportResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(supportResponse == null) {
+            return null;
+        }
+        return supportResponse.getIsSuccess();
     }
     
     public static String getUserToken(Long userId) {

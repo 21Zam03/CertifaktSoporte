@@ -40,6 +40,7 @@ public class WelcomeView extends javax.swing.JFrame {
         cmbComprobanteTipo.addItem("Nota de credito");
         cmbComprobanteTipo.addItem("Nota de debito");
         cmbComprobanteTipo.setSelectedIndex(0);
+        lblCompanyRuc.setBackground(Color.BLUE);
         
         /*1 part*/
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/logo.png"));
@@ -85,6 +86,8 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblCompanyError = new javax.swing.JLabel();
+        btnCompanyCreate = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         jpVouchers = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         btnVoucher = new javax.swing.JButton();
@@ -126,6 +129,8 @@ public class WelcomeView extends javax.swing.JFrame {
         lblTokens1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        lblUsers = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
@@ -145,6 +150,9 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtpMenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jtpMenu.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        jtpMenu.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
+        jtpMenu.setToolTipText("");
 
         jpÇlients.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -157,7 +165,7 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtCompanyRuc.setToolTipText("");
-        jPanel4.add(txtCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 500, 36));
+        jPanel4.add(txtCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 560, 36));
 
         btnCompany.setText("Consultar");
         btnCompany.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -166,7 +174,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 btnCompanyActionPerformed(evt);
             }
         });
-        jPanel4.add(btnCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 140, 107, 34));
+        jPanel4.add(btnCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 107, 34));
 
         lblCompanyName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCompanyName.setText("Nombre");
@@ -177,7 +185,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 lblCompanyNameMouseClicked(evt);
             }
         });
-        jPanel4.add(lblCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 80, 30));
+        jPanel4.add(lblCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 80, 30));
 
         lblCompanyRuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCompanyRuc.setText("Ruc");
@@ -194,7 +202,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 lblCompanyRucMouseExited(evt);
             }
         });
-        jPanel4.add(lblCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 80, 30));
+        jPanel4.add(lblCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 80, 30));
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -206,10 +214,10 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 558, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,22 +227,26 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 40));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 40));
 
         lblCompanyError.setForeground(new java.awt.Color(255, 51, 51));
         lblCompanyError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(lblCompanyError, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 333, 23));
+        jPanel4.add(lblCompanyError, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 333, 23));
+
+        btnCompanyCreate.setText("Crear");
+        jPanel4.add(btnCompanyCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 70, 30));
+        jPanel4.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
 
         javax.swing.GroupLayout jpÇlientsLayout = new javax.swing.GroupLayout(jpÇlients);
         jpÇlients.setLayout(jpÇlientsLayout);
         jpÇlientsLayout.setHorizontalGroup(
             jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpÇlientsLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpÇlientsLayout.setVerticalGroup(
             jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,8 +254,8 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(lblCompany)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jtpMenu.addTab("tab1", jpÇlients);
@@ -277,7 +289,7 @@ public class WelcomeView extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -320,7 +332,7 @@ public class WelcomeView extends javax.swing.JFrame {
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addComponent(btnVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,7 +359,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        jpVouchers.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 590, 300));
+        jpVouchers.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 610, 300));
 
         lblVoucher1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblVoucher1.setForeground(new java.awt.Color(153, 153, 153));
@@ -417,11 +429,11 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbGuiaTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtGuiaRuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(txtGuiaSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtGuiaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtGuiaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtGuiaRuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
         );
         jPanel9Layout.setVerticalGroup(
@@ -441,7 +453,7 @@ public class WelcomeView extends javax.swing.JFrame {
                     .addComponent(lblGuiaSerieNumero)
                     .addComponent(txtGuiaSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtGuiaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(btnGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -458,12 +470,11 @@ public class WelcomeView extends javax.swing.JFrame {
 
         jpTokens.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel6.add(txtUserId, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 463, -1));
+        jPanel6.add(txtUserId, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 420, -1));
 
-        jPanel10.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel10.setBackground(new java.awt.Color(0, 102, 204));
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
 
         lblTokens.setBackground(new java.awt.Color(255, 255, 255));
@@ -478,8 +489,8 @@ public class WelcomeView extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTokens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(lblTokens, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,7 +500,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel6.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, -1));
+        jPanel6.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, -1));
 
         btnGenerarToken.setText("Generar Token");
         btnGenerarToken.addActionListener(new java.awt.event.ActionListener() {
@@ -497,28 +508,23 @@ public class WelcomeView extends javax.swing.JFrame {
                 btnGenerarTokenActionPerformed(evt);
             }
         });
+        jPanel6.add(btnGenerarToken, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, -1, 32));
 
         javax.swing.GroupLayout jpTokensLayout = new javax.swing.GroupLayout(jpTokens);
         jpTokens.setLayout(jpTokensLayout);
         jpTokensLayout.setHorizontalGroup(
             jpTokensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTokensLayout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-            .addGroup(jpTokensLayout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addComponent(btnGenerarToken)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jpTokensLayout.setVerticalGroup(
             jpTokensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTokensLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(btnGenerarToken, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         jtpMenu.addTab("tab4", jpTokens);
@@ -542,9 +548,9 @@ public class WelcomeView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jPanel11.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 550, 145));
+        jPanel11.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 580, 145));
 
-        jPanel12.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel12.setBackground(new java.awt.Color(0, 102, 204));
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
 
         lblTokens1.setBackground(new java.awt.Color(255, 255, 255));
@@ -570,32 +576,44 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, -1));
+        jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, -1));
         jPanel11.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 430, -1));
 
         jButton2.setText("Consultar");
-        jPanel11.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 120, -1));
+        jPanel11.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 60, 120, -1));
+
+        jButton3.setText("Crear");
+        jPanel11.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 90, 30));
+
+        lblUsers.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblUsers.setForeground(new java.awt.Color(153, 153, 153));
+        lblUsers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsers.setText("Consulta usuarios");
 
         javax.swing.GroupLayout jpUsersLayout = new javax.swing.GroupLayout(jpUsers);
         jpUsers.setLayout(jpUsersLayout);
         jpUsersLayout.setHorizontalGroup(
             jpUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpUsersLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(jpUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpUsersLayout.setVerticalGroup(
             jpUsersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpUsersLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpUsersLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(lblUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jtpMenu.addTab("tab5", jpUsers);
 
-        jPanel1.add(jtpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 660, 430));
+        jPanel1.add(jtpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 660, 440));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -841,6 +859,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnCompanies;
     private javax.swing.JButton btnCompany;
+    private javax.swing.JButton btnCompanyCreate;
     private javax.swing.JButton btnGenerarToken;
     private javax.swing.JButton btnGuia;
     private javax.swing.JButton btnGuias;
@@ -852,6 +871,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbGuiaTipo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -872,6 +892,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jpGuias;
@@ -892,6 +913,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblTokens;
     private javax.swing.JLabel lblTokens1;
+    private javax.swing.JLabel lblUsers;
     private javax.swing.JLabel lblVoucher1;
     private javax.swing.JTextField txtCompanyRuc;
     private javax.swing.JTextField txtComprobanteNumero;

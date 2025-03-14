@@ -38,8 +38,10 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         cmbEstado.addItem("01");
         cmbEstado.addItem("02");
         cmbEstado.addItem("05");
+        cmbEstado.addItem("07");
         cmbEstado.addItem("08");
         cmbEstado.addItem("09");
+
         cmbEstadoSunat.addItem("N_ENV");
         cmbEstadoSunat.addItem("ACEPT");
         cmbEstadoSunat.addItem("RECHA");
