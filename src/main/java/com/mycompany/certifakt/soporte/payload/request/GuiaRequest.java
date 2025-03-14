@@ -1,12 +1,12 @@
+package com.mycompany.certifakt.soporte.payload.request;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.certifakt.soporte.payload.dto;
 
-
-public class GuiaDto {
-
+public class GuiaRequest {
+    
     private Long guiaId;
     private String fechaEmision;
     private String tipoComprobante;
@@ -20,7 +20,7 @@ public class GuiaDto {
     private String estado;
     private String estadoSunat;
 
-    public GuiaDto() {
+    public GuiaRequest() {
     }
 
     public Long getGuiaId() {
@@ -118,10 +118,7 @@ public class GuiaDto {
     public void setEstadoSunat(String estadoSunat) {
         this.estadoSunat = estadoSunat;
     }
-
-    @Override
-    public String toString() {
-        return "GuiaDto{" + "guiaId=" + guiaId + ", fechaEmision=" + fechaEmision + ", tipoComprobante=" + tipoComprobante + ", serie=" + serie + ", numero=" + numero + ", numDocumIdentRemit=" + numDocumIdentRemit + ", denominacionRemit=" + denominacionRemit + ", numDocumIdentDestin=" + numDocumIdentDestin + ", denominacionDestin=" + denominacionDestin + ", pesoTotal=" + pesoTotal + ", estado=" + estado + ", estadoSunat=" + estadoSunat + '}';
-    }
+    
+    
     
 }
