@@ -4,17 +4,26 @@
  */
 package com.mycompany.certifakt.soporte.view;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.config.ConfigFile;
-import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 public class LoginView extends javax.swing.JFrame {
     
     public LoginView() {
+        try {
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (Exception e) {
+            System.err.println("No se pudo aplicar el tema FlatLaf Cupertino Light");
+        }
         initComponents();
         loadImageIcon();
         validateEnvironment();
+        btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblEnvironmentChange.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     @SuppressWarnings("unchecked")

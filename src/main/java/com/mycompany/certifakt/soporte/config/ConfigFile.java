@@ -92,5 +92,15 @@ public class ConfigFile {
             e.printStackTrace();
         }
     }
+    
+    public static void eliminarCredenciales() {
+        properties.remove("user.token"); // Eliminar la clave del objeto properties
+        String configFile = obtenerRutaConfig();
+        try (FileOutputStream fos = new FileOutputStream(configFile)) {
+            properties.store(fos, "Token eliminado");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

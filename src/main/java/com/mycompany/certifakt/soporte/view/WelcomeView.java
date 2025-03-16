@@ -4,6 +4,7 @@
  */
 package com.mycompany.certifakt.soporte.view;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.config.ConfigFile;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
@@ -15,6 +16,7 @@ import java.awt.Cursor;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 public class WelcomeView extends javax.swing.JFrame {
     
@@ -22,7 +24,11 @@ public class WelcomeView extends javax.swing.JFrame {
     Map<String, String> guiaMap = new HashMap<>();
     
     public WelcomeView() {
-        
+        try {
+            UIManager.setLookAndFeel(new FlatMacLightLaf());
+        } catch (Exception e) {
+            System.err.println("No se pudo aplicar el tema FlatLaf Cupertino Light");
+        }
         comprobanteMap.put("Factura", "01");
         comprobanteMap.put("Boleta", "03");
         comprobanteMap.put("Nota de crédito", "07");
@@ -40,12 +46,13 @@ public class WelcomeView extends javax.swing.JFrame {
         cmbComprobanteTipo.addItem("Nota de credito");
         cmbComprobanteTipo.addItem("Nota de debito");
         cmbComprobanteTipo.setSelectedIndex(0);
-        lblCompanyRuc.setBackground(Color.BLUE);
+        
         
         /*1 part*/
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/logo.png"));
         lblLogo.setIcon(imageIcon);
         btnCerrarSesion.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnCompanyCreate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         /*2 part*/
         btnCompanies.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -57,8 +64,6 @@ public class WelcomeView extends javax.swing.JFrame {
         /*3 part*/
         //Company
         btnCompany.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        lblCompanyRuc.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        lblCompanyName.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         //Voucher
         btnVoucher.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -81,12 +86,10 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         txtCompanyRuc = new javax.swing.JTextField();
         btnCompany = new javax.swing.JButton();
-        lblCompanyName = new javax.swing.JLabel();
-        lblCompanyRuc = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lblCompanyError = new javax.swing.JLabel();
         btnCompanyCreate = new javax.swing.JButton();
+        lblCompanyError = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jpVouchers = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
@@ -156,7 +159,7 @@ public class WelcomeView extends javax.swing.JFrame {
 
         jpÇlients.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblCompany.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblCompany.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblCompany.setForeground(new java.awt.Color(153, 153, 153));
         lblCompany.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCompany.setText("Consulta Empresas");
@@ -165,76 +168,59 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtCompanyRuc.setToolTipText("");
-        jPanel4.add(txtCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 560, 36));
+        jPanel4.add(txtCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 570, 36));
 
-        btnCompany.setText("Consultar");
+        btnCompany.setBackground(new java.awt.Color(0, 102, 204));
+        btnCompany.setForeground(new java.awt.Color(255, 255, 255));
+        btnCompany.setText("Buscar");
         btnCompany.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompanyActionPerformed(evt);
             }
         });
-        jPanel4.add(btnCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 107, 34));
-
-        lblCompanyName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCompanyName.setText("Nombre");
-        lblCompanyName.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lblCompanyName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblCompanyName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCompanyNameMouseClicked(evt);
-            }
-        });
-        jPanel4.add(lblCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 80, 30));
-
-        lblCompanyRuc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCompanyRuc.setText("Ruc");
-        lblCompanyRuc.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lblCompanyRuc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        lblCompanyRuc.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCompanyRucMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblCompanyRucMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblCompanyRucMouseExited(evt);
-            }
-        });
-        jPanel4.add(lblCompanyRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, 80, 30));
+        jPanel4.add(btnCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 90, 34));
 
         jPanel5.setBackground(new java.awt.Color(0, 102, 204));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Criterios de busqueda");
+        jLabel1.setText("Busqueda");
+
+        btnCompanyCreate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCompanyCreate.setText("+");
+        btnCompanyCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompanyCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addComponent(btnCompanyCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCompanyCreate, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 40));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 50));
 
         lblCompanyError.setForeground(new java.awt.Color(255, 51, 51));
         lblCompanyError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel4.add(lblCompanyError, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 333, 23));
-
-        btnCompanyCreate.setText("Crear");
-        jPanel4.add(btnCompanyCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 70, 30));
         jPanel4.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
 
         javax.swing.GroupLayout jpÇlientsLayout = new javax.swing.GroupLayout(jpÇlients);
@@ -242,20 +228,20 @@ public class WelcomeView extends javax.swing.JFrame {
         jpÇlientsLayout.setHorizontalGroup(
             jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpÇlientsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jpÇlientsLayout.setVerticalGroup(
             jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpÇlientsLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(15, 15, 15)
                 .addComponent(lblCompany)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jtpMenu.addTab("tab1", jpÇlients);
@@ -619,6 +605,11 @@ public class WelcomeView extends javax.swing.JFrame {
 
         btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         txtEnvironment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -822,24 +813,20 @@ public class WelcomeView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuiaActionPerformed
 
-    private void lblCompanyRucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyRucMouseEntered
-        
-    }//GEN-LAST:event_lblCompanyRucMouseEntered
+    private void btnCompanyCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyCreateActionPerformed
+        this.dispose();
+        CreateCompanyView createCompanyView = new CreateCompanyView();
+        createCompanyView.setVisible(true);
+        createCompanyView.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnCompanyCreateActionPerformed
 
-    private void lblCompanyRucMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyRucMouseExited
-        
-    }//GEN-LAST:event_lblCompanyRucMouseExited
-
-    private void lblCompanyRucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyRucMouseClicked
-        lblCompanyRuc.setBackground(Color.BLUE);
-        lblCompanyName.setBackground(Color.WHITE);
-    }//GEN-LAST:event_lblCompanyRucMouseClicked
-
-    private void lblCompanyNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCompanyNameMouseClicked
-        lblCompanyName.setBackground(Color.BLUE);
-        lblCompanyRuc.setBackground(Color.WHITE);
-        
-    }//GEN-LAST:event_lblCompanyNameMouseClicked
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        ConfigFile.eliminarCredenciales();
+        LoginView loginView = new LoginView();
+        loginView.setVisible(true);
+        loginView.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
     
     private void postEnvironment() {
         String url = ConfigFile.obtenerUrl();
@@ -903,8 +890,6 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jtpMenu;
     private javax.swing.JLabel lblCompany;
     private javax.swing.JLabel lblCompanyError;
-    private javax.swing.JLabel lblCompanyName;
-    private javax.swing.JLabel lblCompanyRuc;
     private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblGuia;
     private javax.swing.JLabel lblGuiaRuc;

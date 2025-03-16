@@ -18,7 +18,7 @@ public class MethodHttp {
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
     
-    public static <T> T post(String url, Object requestBody, Class<T> responseType) {
+    public static <T> T post(String url, String token, Object requestBody, Class<T> responseType) {
         String jsonBody = gson.toJson(requestBody);
 
         RequestBody body = RequestBody.create(jsonBody, MediaType.get("application/json; charset=utf-8"));
@@ -26,6 +26,7 @@ public class MethodHttp {
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
+                .addHeader("Authorization", token != null && !token.trim().isEmpty() ? "Bearer "+ token : "")
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
@@ -69,14 +70,14 @@ public class MethodHttp {
         String jsonBody = gson.toJson(requestBody);
         
         RequestBody body = RequestBody.create(jsonBody, MediaType.get("application/json; charset=utf-8"));
-
+        System.out.println("Body: "+jsonBody);
         Request request = new Request.Builder()
                 .url(url)
                 .put(body)
                 .addHeader("Authorization", "Bearer " + token)
                 .addHeader("Content-Type", "application/json")
                 .build();
-
+        System.out.println("REQUEST: "+request);
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
                return gson.fromJson(response.body().string(), responseType);

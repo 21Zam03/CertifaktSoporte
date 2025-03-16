@@ -15,6 +15,7 @@ import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
 import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
+import com.mycompany.certifakt.soporte.payload.request.CreateCompanyRequest;
 import com.mycompany.certifakt.soporte.payload.request.GuiaRequest;
 import com.mycompany.certifakt.soporte.payload.request.PaymentVoucherRequest;
 import com.mycompany.certifakt.soporte.payload.response.CompanyResponse;
@@ -36,6 +37,7 @@ public class CertifaktService {
     private static final String COMPANY_ENDPOINT = "api/support/company";
     private static final String TOKEN_ENDPOINT = "api/usuarios/generar-token-api";
     private static final String GUIA_ENDPOINT = "api/support/guia";
+    private static final String CREAR_COMPANY_ENDPOINT = "api/auth/register";
     
     private static final Gson gson = new Gson();
     private static final OkHttpClient client = new OkHttpClient(); 
@@ -44,7 +46,7 @@ public class CertifaktService {
         String API_URL = ConfigFile.obtenerUrl();
         LoginRequest loginRequest = new LoginRequest(username, password);
         
-        UserLoginResponse userLoginResponse = MethodHttp.post(API_URL+LOGIN_ENDPOINT, loginRequest, UserLoginResponse.class);
+        UserLoginResponse userLoginResponse = MethodHttp.post(API_URL+LOGIN_ENDPOINT, null, loginRequest, UserLoginResponse.class);
         
         if (userLoginResponse != null && userLoginResponse.getAccessToken() != null) {
             System.out.println("Token obtenido: " + userLoginResponse.getAccessToken());
@@ -105,6 +107,24 @@ public class CertifaktService {
             return null;
         }
         return supportResponse.getIsSuccess();
+    }
+    
+    public static Boolean createCompany(CreateCompanyRequest createCompanyRequest) {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        
+        Object supportResponse = null;
+        try {
+            supportResponse = MethodHttp.post(API_URL+CREAR_COMPANY_ENDPOINT, token, createCompanyRequest, Object.class);
+        } catch (Exception e) {
+            System.err.println("Error en la solicitud POST: " + e.getMessage());
+            e.printStackTrace();
+        }
+        if(supportResponse == null) {
+            return null;
+        } else {
+            return true;
+        }   
     }
     
     public static PaymentVoucherDto getPaymentVoucher(SupportConsultRequest supportConsultRequest) {

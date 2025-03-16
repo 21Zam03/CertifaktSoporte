@@ -14,7 +14,6 @@ public class CertifaktSoporte {
     
     public static void main(String[] args) {
         ConfigFile.cargarConfiguracion();
-        String apiUrl = ConfigFile.obtenerUrl();
         
         UserDto userDto = CertifaktService.validateSession();
         if(userDto != null) {
