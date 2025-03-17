@@ -5,8 +5,6 @@
 package com.mycompany.certifakt.soporte.apiservice;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.mycompany.certifakt.soporte.config.ConfigFile;
 import com.mycompany.certifakt.soporte.httpmethods.MethodHttp;
 import com.mycompany.certifakt.soporte.payload.LoginRequest;
@@ -19,7 +17,6 @@ import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
 import com.mycompany.certifakt.soporte.payload.request.CreateCompanyRequest;
 import com.mycompany.certifakt.soporte.payload.request.GuiaRequest;
 import com.mycompany.certifakt.soporte.payload.request.PaymentVoucherRequest;
-import com.mycompany.certifakt.soporte.payload.response.CompanyResponse;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
 import com.mycompany.certifakt.soporte.payload.request.UserRequest;
 import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
@@ -80,7 +77,7 @@ public class CertifaktService {
         }
     }
     
-    public static CompanyDto getCompany(String ruc) {
+    public static CompanyDto getCompany(String ruc) throws IOException {
         String token = ConfigFile.obtenerToken();
         String API_URL = ConfigFile.obtenerUrl();
         Map<String, String> params = new HashMap<>();
@@ -89,7 +86,9 @@ public class CertifaktService {
         try {
             supportResponse = MethodHttp.get(API_URL+COMPANY_ENDPOINT, params, token, SupportResponse.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+            //System.out.println("ERROR: "+e.getMessage());
+            //e.printStackTrace();
         }
         if(supportResponse == null) {
             return null;
@@ -144,7 +143,8 @@ public class CertifaktService {
         try {
             supportResponse = MethodHttp.get(API_URL+VOUCHER_ENDPOINT, params, token, SupportResponse.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+            //e.printStackTrace();
         }
         if(supportResponse == null) {
             return null;
@@ -182,7 +182,8 @@ public class CertifaktService {
         try {
             supportResponse = MethodHttp.get(API_URL+GUIA_ENDPOINT, params, token, SupportResponse.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+            //e.printStackTrace();
         }
         if(supportResponse == null) {
             return null;
@@ -214,7 +215,8 @@ public class CertifaktService {
         try {
             userTokenResponse = MethodHttp.get(API_URL+TOKEN_ENDPOINT+"/"+userId, params, token, UserTokenResponse.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+            //e.printStackTrace();
         }
         if(userTokenResponse == null) {
             return null;
@@ -232,7 +234,8 @@ public class CertifaktService {
         try {
             supportResponse = MethodHttp.get(API_URL+USER_ENDPOINT, params, token, SupportResponse.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+            //e.printStackTrace();
         }
         if(supportResponse == null) {
             return null;

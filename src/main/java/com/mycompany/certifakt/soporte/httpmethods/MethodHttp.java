@@ -5,6 +5,9 @@
 package com.mycompany.certifakt.soporte.httpmethods;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 import java.io.IOException;
 import java.util.Map;
 import okhttp3.HttpUrl;
@@ -58,7 +61,16 @@ public class MethodHttp {
         System.out.println("REQUEST: "+request);
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful() || response.body() == null) {
-                throw new IOException("Error en la solicitud: " + response.code());
+                String errorBody = response.body() != null ? response.body().string() : "Respuesta vacía";
+                System.out.println("ERROR RESPONSE: " + errorBody);
+                // Intenta extraer el mensaje de error
+                try {
+                    JsonObject jsonError = JsonParser.parseString(errorBody).getAsJsonObject();
+                    String mensajeError = jsonError.has("mensaje") ? jsonError.get("mensaje").getAsString() : "Error desconocido";
+                    throw new IOException("Error en la solicitud: " + response.code() + " - " + mensajeError);
+                } catch (JsonSyntaxException e) {
+                    throw new IOException("Error en la solicitud: " + response.code() + " - No se pudo leer el JSON");
+                }
             }
             String data = response.body().string();
             System.out.println("RESPONSE: "+data);
