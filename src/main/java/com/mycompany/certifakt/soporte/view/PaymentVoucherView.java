@@ -20,10 +20,10 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     
     public PaymentVoucherView(PaymentVoucherDto paymentVoucher) {
         this.paymentVoucherId = paymentVoucher.getPaymentVoucherId();
-        tipoMap.put("01", "Factura");
-        tipoMap.put("03", "Boleta");
-        tipoMap.put("07", "Nota de crédito");
-        tipoMap.put("08", "Nota de debito");
+        tipoMap.put("Factura", "01");
+        tipoMap.put("Boleta", "03");
+        tipoMap.put("Nota de crédtito", "07");
+        tipoMap.put("Nota de débito", "08");
         initComponents();
         loadImageIcon();
         this.setResizable(false);
@@ -49,7 +49,7 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         cmbEstadoSunat.setSelectedItem(paymentVoucher.getEstadoSunat());
         
         txtFechaEmision.setText(paymentVoucher.getFechaEmision());
-        cmbTipo.setSelectedItem(paymentVoucher.getTipoComprobante());
+        cmbTipo.setSelectedItem(this.obtenerTipo(paymentVoucher.getTipoComprobante()));
         txtSerie.setText(paymentVoucher.getSerie());
         txtNumero.setText(paymentVoucher.getNumero().toString());
         txtNumeroReceptor.setText(paymentVoucher.getNumDocIdentReceptor());
@@ -214,7 +214,7 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         PaymentVoucherRequest paymentVoucherRequest = new PaymentVoucherRequest();
         paymentVoucherRequest.setPaymentVoucherId(paymentVoucherId);
         paymentVoucherRequest.setFechaEmision(txtFechaEmision.getText());
-        paymentVoucherRequest.setTipoComprobante(String.valueOf(cmbTipo.getSelectedItem()));
+        paymentVoucherRequest.setTipoComprobante(String.valueOf(tipoMap.get(cmbTipo.getSelectedItem())));
         paymentVoucherRequest.setSerie(txtSerie.getText());
         paymentVoucherRequest.setNumero(Integer.valueOf(txtNumero.getText()));
         paymentVoucherRequest.setNumDocIdentReceptor(txtNumeroReceptor.getText());
@@ -240,6 +240,16 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     private void loadImageIcon() {
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/icono.png"));
         this.setIconImage(imageIcon.getImage());
+    }
+    
+    public String obtenerTipo(String codigo) {
+        return switch (codigo) {
+            case "01" -> "Factura";
+            case "03" -> "Boleta de Venta";
+            case "07" -> "Nota de Crédito";
+            case "08" -> "Nota de Débito";
+            default -> "Desconocido";
+        };
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

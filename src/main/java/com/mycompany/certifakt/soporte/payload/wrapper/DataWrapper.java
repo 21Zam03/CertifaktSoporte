@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
+import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
+import java.util.List;
 
 public class DataWrapper {
     
@@ -17,6 +19,16 @@ public class DataWrapper {
     private PaymentVoucherDto paymentVoucherDto;
     
     private GuiaDto guiaDto;
+    
+    private List<UserDto2> UserDtoList;
+
+    public List<UserDto2> getUserDtoList() {
+        return UserDtoList;
+    }
+
+    public void setUserDtoList(List<UserDto2> UserDtoList) {
+        this.UserDtoList = UserDtoList;
+    }
     
     public CompanyDto getCompanyDto() {
         return companyDto;

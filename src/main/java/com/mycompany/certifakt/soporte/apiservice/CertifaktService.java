@@ -14,17 +14,20 @@ import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
+import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
 import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
 import com.mycompany.certifakt.soporte.payload.request.CreateCompanyRequest;
 import com.mycompany.certifakt.soporte.payload.request.GuiaRequest;
 import com.mycompany.certifakt.soporte.payload.request.PaymentVoucherRequest;
 import com.mycompany.certifakt.soporte.payload.response.CompanyResponse;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
+import com.mycompany.certifakt.soporte.payload.request.UserRequest;
 import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
 import com.mycompany.certifakt.soporte.payload.response.UserLoginResponse;
 import com.mycompany.certifakt.soporte.payload.response.UserTokenResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import okhttp3.OkHttpClient;
 
@@ -38,6 +41,7 @@ public class CertifaktService {
     private static final String TOKEN_ENDPOINT = "api/usuarios/generar-token-api";
     private static final String GUIA_ENDPOINT = "api/support/guia";
     private static final String CREAR_COMPANY_ENDPOINT = "api/auth/register";
+    private static final String USER_ENDPOINT = "api/support/user";
     
     private static final Gson gson = new Gson();
     private static final OkHttpClient client = new OkHttpClient(); 
@@ -219,5 +223,25 @@ public class CertifaktService {
         return userToken;
     }
     
+    public static List<UserDto2> getUserList(String ruc) {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        Map<String, String> params = new HashMap<>();
+        params.put("ruc", ruc);
+        SupportResponse supportResponse = null;
+        try {
+            supportResponse = MethodHttp.get(API_URL+USER_ENDPOINT, params, token, SupportResponse.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(supportResponse == null) {
+            return null;
+        }
+        List<UserDto2> userList = (List<UserDto2>) supportResponse.getData().getUserDtoList();
+        return userList;
+    }
     
+    public static Boolean UpdateUser(UserRequest userRequest) {
+        return true;
+    }
 }

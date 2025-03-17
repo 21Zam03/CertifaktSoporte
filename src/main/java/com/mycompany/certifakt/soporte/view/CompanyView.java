@@ -93,7 +93,7 @@ public class CompanyView extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setText("Numero de RUC:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 150, 30));
         jPanel2.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, -1));
 
         jLabel9.setText("Telefono:");
@@ -101,7 +101,7 @@ public class CompanyView extends javax.swing.JFrame {
         jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 100, 170, -1));
 
         jLabel3.setText("Nombre comercial:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 150, -1));
         jPanel2.add(txtNombreComercial, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
 
         jLabel10.setText("Ose:");
@@ -110,7 +110,7 @@ public class CompanyView extends javax.swing.JFrame {
         jPanel2.add(cmbOse, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 150, 170, -1));
 
         jLabel4.setText("Razón social:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 140, -1));
         jPanel2.add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 180, -1));
 
         lblVerGuia.setText("Ver guia:");
@@ -118,7 +118,7 @@ public class CompanyView extends javax.swing.JFrame {
         jPanel2.add(ckbVerGuia, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, -1, -1));
 
         jLabel5.setText("Direccion:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 140, -1));
         jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 180, -1));
 
         lblVerOtroComprobante.setText("Ver otro comprobante:");
@@ -126,7 +126,7 @@ public class CompanyView extends javax.swing.JFrame {
         jPanel2.add(ckbVerOtroComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 250, -1, -1));
 
         jLabel6.setText("Correo:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 140, -1));
         jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 180, -1));
 
         lblVerCotizacion.setText("Ver cotizacion:");
@@ -134,7 +134,7 @@ public class CompanyView extends javax.swing.JFrame {
         jPanel2.add(ckbVerCotizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 300, -1, -1));
 
         jLabel7.setText("Envio automatico sunat:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 160, -1));
         jPanel2.add(ckbEnvioAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 300, -1, -1));
 
         jLabel8.setText("Estado:");

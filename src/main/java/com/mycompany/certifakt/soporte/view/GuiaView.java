@@ -21,8 +21,8 @@ public class GuiaView extends javax.swing.JFrame {
     
     public GuiaView(GuiaDto guiaDto) {
         this.guiaId = guiaDto.getGuiaId();
-        tipoMap.put("09", "Guia de remision remitente");
-        tipoMap.put("31", "Guia de remision transportista");
+        tipoMap.put("Guia de remision remitente", "09");
+        tipoMap.put("Guia de remision transportista", "31");
         initComponents();
         loadImageIcon();
         this.setResizable(false);
@@ -44,7 +44,7 @@ public class GuiaView extends javax.swing.JFrame {
         
         /*SETEAMOS LOS DATOS*/
         txtFechaEmision.setText(guiaDto.getFechaEmision());
-        cmbTipo.setSelectedItem(tipoMap.get(guiaDto.getTipoComprobante()));
+        cmbTipo.setSelectedItem("09".equals(guiaDto.getTipoComprobante())? "Guia de remision remitente" : "Guia de remision transportista");
         txtSerie.setText(guiaDto.getSerie());
         txtNumero.setText(String.valueOf(guiaDto.getNumero()));
         txtNumeroRemitente.setText(guiaDto.getNumDocumIdentRemit());
@@ -203,7 +203,7 @@ public class GuiaView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +226,7 @@ public class GuiaView extends javax.swing.JFrame {
         GuiaRequest guiaRequest = new GuiaRequest();
         guiaRequest.setGuiaId(guiaId);
         guiaRequest.setFechaEmision(txtFechaEmision.getText());
-        guiaRequest.setTipoComprobante(String.valueOf(cmbTipo.getSelectedItem()));
+        guiaRequest.setTipoComprobante(String.valueOf(tipoMap.get(cmbTipo.getSelectedItem())));
         guiaRequest.setSerie(txtSerie.getText());
         guiaRequest.setNumero(Integer.valueOf(txtNumero.getText()));
         guiaRequest.setNumDocumIdentRemit(txtNumeroRemitente.getText());

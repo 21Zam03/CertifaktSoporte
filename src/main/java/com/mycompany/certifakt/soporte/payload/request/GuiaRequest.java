@@ -118,6 +118,11 @@ public class GuiaRequest {
     public void setEstadoSunat(String estadoSunat) {
         this.estadoSunat = estadoSunat;
     }
+
+    @Override
+    public String toString() {
+        return "GuiaRequest{" + "guiaId=" + guiaId + ", fechaEmision=" + fechaEmision + ", tipoComprobante=" + tipoComprobante + ", serie=" + serie + ", numero=" + numero + ", numDocumIdentRemit=" + numDocumIdentRemit + ", denominacionRemit=" + denominacionRemit + ", numDocumIdentDestin=" + numDocumIdentDestin + ", denominacionDestin=" + denominacionDestin + ", pesoTotal=" + pesoTotal + ", estado=" + estado + ", estadoSunat=" + estadoSunat + '}';
+    }
     
     
     
