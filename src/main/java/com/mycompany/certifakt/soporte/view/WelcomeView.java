@@ -582,7 +582,6 @@ public class WelcomeView extends javax.swing.JFrame {
 
         jpUsers.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

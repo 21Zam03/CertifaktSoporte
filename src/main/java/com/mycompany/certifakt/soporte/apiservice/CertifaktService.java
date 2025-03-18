@@ -97,19 +97,17 @@ public class CertifaktService {
         return companyDto;
     }
     
-    public static Boolean updateCompany(CompanyRequest companyRequest) {
+    public static SupportResponse updateCompany(CompanyRequest companyRequest) {
         String token = ConfigFile.obtenerToken();
         String API_URL = ConfigFile.obtenerUrl();
         SupportResponse supportResponse = null;
         try {
             supportResponse = MethodHttp.put(API_URL+COMPANY_ENDPOINT, token, companyRequest, SupportResponse.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
+            //e.printStackTrace();
         }
-        if(supportResponse == null) {
-            return null;
-        }
-        return supportResponse.getIsSuccess();
+        return supportResponse;
     }
     
     public static Boolean createCompany(CreateCompanyRequest createCompanyRequest) {
@@ -119,14 +117,15 @@ public class CertifaktService {
         Object supportResponse = null;
         try {
             supportResponse = MethodHttp.post(API_URL+CREAR_COMPANY_ENDPOINT, token, createCompanyRequest, Object.class);
+            if(supportResponse == null) {
+                return null;
+            } else {
+                return true;
+            }
         } catch (Exception e) {
-            System.err.println("Error en la solicitud POST: " + e.getMessage());
-            e.printStackTrace();
-        }
-        if(supportResponse == null) {
-            return null;
-        } else {
-            return true;
+            throw new RuntimeException(e.getMessage());
+            //System.err.println("Error en la solicitud POST: " + e.getMessage());
+            //e.printStackTrace();
         }   
     }
     
@@ -245,6 +244,17 @@ public class CertifaktService {
     }
     
     public static Boolean UpdateUser(UserRequest userRequest) {
-        return true;
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        SupportResponse supportResponse = null;
+        try {
+            supportResponse = MethodHttp.put(API_URL, token, userRequest, SupportResponse.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        } 
+        if(supportResponse == null) {
+            return null;
+        }
+        return supportResponse.getIsSuccess();
     }
 }

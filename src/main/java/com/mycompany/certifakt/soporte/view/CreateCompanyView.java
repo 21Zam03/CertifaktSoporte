@@ -66,7 +66,7 @@ public class CreateCompanyView extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 30));
+        jPanel1.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, 30));
 
         btnCrear.setBackground(new java.awt.Color(0, 102, 204));
         btnCrear.setForeground(new java.awt.Color(255, 255, 255));
@@ -77,7 +77,7 @@ public class CreateCompanyView extends javax.swing.JFrame {
                 btnCrearActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 320, -1, 30));
+        jPanel1.add(btnCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 204)));
@@ -85,23 +85,23 @@ public class CreateCompanyView extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre de usuario:");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 150, 30));
-        jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, -1));
+        jPanel2.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 260, -1));
 
         jLabel3.setText("Contraseña:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 150, -1));
-        jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 180, -1));
+        jPanel2.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 260, -1));
 
         jLabel4.setText("Nombre completo:");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 150, -1));
-        jPanel2.add(txtNombreCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 180, -1));
+        jPanel2.add(txtNombreCompleto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 260, -1));
 
         jLabel5.setText("Direccion:");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 150, -1));
-        jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 180, -1));
+        jPanel2.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 260, -1));
 
         jLabel6.setText("Email:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 150, -1));
-        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, 180, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 150, -1));
+        jPanel2.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 200, 240, -1));
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -115,7 +115,7 @@ public class CreateCompanyView extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(422, Short.MAX_VALUE))
+                .addContainerGap(572, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,32 +125,32 @@ public class CreateCompanyView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 40));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 40));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 770, 10));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 810, 10));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 810, 10));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 810, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 960, 10));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 960, 10));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 960, 10));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 810, 10));
 
         jLabel12.setText("Razón Social:");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 160, -1));
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 160, -1));
 
         jLabel13.setText("Nombre Comercial:");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 160, -1));
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 160, -1));
 
         jLabel14.setText("Ruc:");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 150, 150, -1));
-        jPanel2.add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 180, -1));
-        jPanel2.add(txtNombreComercial, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 180, -1));
-        jPanel2.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 180, -1));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 150, -1));
+        jPanel2.add(txtRazonSocial, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 240, -1));
+        jPanel2.add(txtNombreComercial, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 240, -1));
+        jPanel2.add(txtRuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, 240, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 810, 230));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 960, 230));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,38 +170,42 @@ public class CreateCompanyView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
-        CreateCompanyRequest createCompanyRequest = new CreateCompanyRequest();
-        createCompanyRequest.setUsername(txtUsername.getText());
-        createCompanyRequest.setPasswordTemp(txtContrasena.getText());
-        createCompanyRequest.setFullName(txtNombreCompleto.getText());
-        createCompanyRequest.setTypeUser("01");
-        createCompanyRequest.setEstado(true);
-        
-        Company company = new Company();
-        company.setDireccion(txtDireccion.getText());
-        company.setRazonSocial(txtRazonSocial.getText());
-        company.setNombreComercial(txtNombreComercial.getText());
-        company.setRuc(txtRuc.getText());
-        company.setEmail(txtEmail.getText());
-        company.setEnvioAutomaticoSunat(true);
-        company.setCantComprobanteDinamico(23);
-        company.setFormat(2);
-        company.setViewGuia(true);
-        company.setRubroHoreal(false);
-        company.setTrial(false);
-        company.setUblVersion("2.1");
-        
-        createCompanyRequest.setCompany(company);
+        try {
+            CreateCompanyRequest createCompanyRequest = new CreateCompanyRequest();
+            createCompanyRequest.setUsername(txtUsername.getText());
+            createCompanyRequest.setPasswordTemp(txtContrasena.getText());
+            createCompanyRequest.setFullName(txtNombreCompleto.getText());
+            createCompanyRequest.setTypeUser("01");
+            createCompanyRequest.setEstado(true);
 
-        Boolean isCreated = CertifaktService.createCompany(createCompanyRequest);
-        if(isCreated != null && isCreated == true) {
-            JOptionPane.showMessageDialog(null, "Se ha registrado la empresa correctamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-            WelcomeView welcomeView = new WelcomeView();
-            welcomeView.setVisible(true);
-            welcomeView.setLocationRelativeTo(null);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al registrar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            Company company = new Company();
+            company.setDireccion(txtDireccion.getText());
+            company.setRazonSocial(txtRazonSocial.getText());
+            company.setNombreComercial(txtNombreComercial.getText());
+            company.setRuc(txtRuc.getText());
+            company.setEmail(txtEmail.getText());
+            company.setEnvioAutomaticoSunat(true);
+            company.setCantComprobanteDinamico(23);
+            company.setFormat(2);
+            company.setViewGuia(true);
+            company.setRubroHoreal(false);
+            company.setTrial(false);
+            company.setUblVersion("2.1");
+
+            createCompanyRequest.setCompany(company);
+
+            Boolean isCreated = CertifaktService.createCompany(createCompanyRequest);
+            if(isCreated != null && isCreated == true) {
+                JOptionPane.showMessageDialog(null, "Se ha registrado la empresa correctamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                WelcomeView welcomeView = new WelcomeView();
+                welcomeView.setVisible(true);
+                welcomeView.setLocationRelativeTo(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "El cuerpo de la respuesta es nulo", "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 

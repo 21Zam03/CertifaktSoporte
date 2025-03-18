@@ -28,12 +28,10 @@ public class StartView extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\DELL\\Documents\\NetBeansProjects\\certifakt-soporte\\src\\main\\resources\\images\\logo.png")); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, 80));
 
         btnGoToTestEnvironment.setText("TEST");
-        btnGoToTestEnvironment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGoToTestEnvironment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGoToTestEnvironment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGoToTestEnvironmentActionPerformed(evt);
@@ -42,7 +40,7 @@ public class StartView extends javax.swing.JFrame {
         jPanel1.add(btnGoToTestEnvironment, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 110, -1));
 
         btnGoToProductionEnvironment.setText("PROD");
-        btnGoToProductionEnvironment.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGoToProductionEnvironment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGoToProductionEnvironment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGoToProductionEnvironmentActionPerformed(evt);
@@ -50,8 +48,9 @@ public class StartView extends javax.swing.JFrame {
         });
         jPanel1.add(btnGoToProductionEnvironment, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 110, -1));
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Escoga el ambiente que desea");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 170, 440, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
