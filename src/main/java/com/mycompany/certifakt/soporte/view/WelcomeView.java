@@ -12,18 +12,25 @@ import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
-import java.awt.Color;
+import com.mycompany.certifakt.soporte.validation.Validation;
 import java.awt.Cursor;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 public class WelcomeView extends javax.swing.JFrame {
     
@@ -44,7 +51,8 @@ public class WelcomeView extends javax.swing.JFrame {
         guiaMap.put("Guia de remision transportista", "31");
         
         initComponents();
-        
+        limitarTextField(txtComprobanteSerie, 4);
+        limitarTextField(txtGuiaSerie, 4);
         this.setResizable(false);
         loadImageIcon();
         postEnvironment();
@@ -119,7 +127,7 @@ public class WelcomeView extends javax.swing.JFrame {
         txtComprobanteNumero = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        lblError = new javax.swing.JLabel();
+        lblVoucherError = new javax.swing.JLabel();
         lblVoucher1 = new javax.swing.JLabel();
         jpGuias = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
@@ -313,8 +321,8 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        lblError.setForeground(new java.awt.Color(255, 51, 51));
-        lblError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblVoucherError.setForeground(new java.awt.Color(255, 51, 51));
+        lblVoucherError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -343,7 +351,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblVoucherError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -369,7 +377,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblVoucherError, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -439,14 +447,14 @@ public class WelcomeView extends javax.swing.JFrame {
                     .addComponent(lblGuiaRuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblGuiaTipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblGuiaSerieNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbGuiaTipo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(txtGuiaSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(txtGuiaSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtGuiaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtGuiaRuc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtGuiaNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
+                    .addComponent(cmbGuiaTipo, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtGuiaRuc, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(45, 45, 45))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,13 +553,21 @@ public class WelcomeView extends javax.swing.JFrame {
 
         jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 640, 70));
 
-        btnAutoPaste.setText("A");
-        jPanel6.add(btnAutoPaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 30, -1));
+        btnAutoPaste.setText("Copiar");
+        btnAutoPaste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAutoPasteActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnAutoPaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 90, -1));
 
         lblGuia1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblGuia1.setForeground(new java.awt.Color(153, 153, 153));
         lblGuia1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblGuia1.setText("Obtener token");
+
+        lblTokenError.setForeground(new java.awt.Color(255, 51, 51));
+        lblTokenError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jpTokensLayout = new javax.swing.GroupLayout(jpTokens);
         jpTokens.setLayout(jpTokensLayout);
@@ -561,9 +577,8 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jpTokensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblTokenError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpTokensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblGuia1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGuia1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(17, 17, 17))
         );
         jpTokensLayout.setVerticalGroup(
@@ -635,6 +650,7 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel11.add(btnUserConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 120, -1));
 
         lblUserError.setForeground(new java.awt.Color(255, 51, 51));
+        lblUserError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel11.add(lblUserError, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 600, 40));
 
         btnUserEditar.setText("E");
@@ -778,7 +794,7 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(189, Short.MAX_VALUE)
+                .addContainerGap(199, Short.MAX_VALUE)
                 .addComponent(btnCompanies)
                 .addGap(18, 18, 18)
                 .addComponent(btnVouchers)
@@ -791,7 +807,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 190, 430));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 190, 440));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -821,22 +837,33 @@ public class WelcomeView extends javax.swing.JFrame {
 
     private void btnVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoucherActionPerformed
         try {
-        SupportConsultRequest supportConsultRequest = new SupportConsultRequest();
-        supportConsultRequest.setRucEmisor(txtComprobanteRucEmisor.getText());
-        supportConsultRequest.setTipoComprobante(comprobanteMap.get((String) cmbComprobanteTipo.getSelectedItem()));
-        supportConsultRequest.setSerie(txtComprobanteSerie.getText());
-        supportConsultRequest.setNumero(Integer.valueOf(txtComprobanteNumero.getText()));
-
-        PaymentVoucherDto paymentVoucher = CertifaktService.getPaymentVoucher(supportConsultRequest);
-        System.out.println("PAYMENT VOUCHER: " + paymentVoucher);
-
-        PaymentVoucherView paymentVoucherView = new PaymentVoucherView(paymentVoucher);
-        this.dispose();
-        paymentVoucherView.setVisible(true);
-        paymentVoucherView.setLocationRelativeTo(null);
-        
+            SupportConsultRequest supportConsultRequest = new SupportConsultRequest();
+            supportConsultRequest.setRucEmisor(txtComprobanteRucEmisor.getText().trim());
+            supportConsultRequest.setTipoComprobante(comprobanteMap.get((String) cmbComprobanteTipo.getSelectedItem()));
+            supportConsultRequest.setSerie(txtComprobanteSerie.getText().trim());
+            supportConsultRequest.setNumero(txtComprobanteNumero.getText().isEmpty() ? 0 : Integer.valueOf(txtComprobanteNumero.getText().trim()));
+            Validation.validarSolicitud(supportConsultRequest);
+            
+            Optional<PaymentVoucherDto> optionalPaymentVoucher = CertifaktService.getPaymentVoucher(supportConsultRequest);
+            if(optionalPaymentVoucher.isPresent()) {
+                this.dispose();
+                PaymentVoucherView paymentVoucherView = new PaymentVoucherView(optionalPaymentVoucher.get());
+                paymentVoucherView.setVisible(true);
+                paymentVoucherView.setLocationRelativeTo(null);
+            } else {
+                lblCompanyError.setText("No se encontró el comprobante "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero());
+                JOptionPane.showMessageDialog(this, "No se encontró el comprobante "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero(), 
+                        "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch (IllegalArgumentException e) {
+            lblVoucherError.setText("Error en los datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            lblVoucherError.setText("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al obtener el comprobante: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            lblError.setText("Error inesperado: " + e.getMessage());
+            lblVoucherError.setText("Error inesperado: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -852,13 +879,22 @@ public class WelcomeView extends javax.swing.JFrame {
 
     private void btnCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyActionPerformed
         try {
-            CompanyDto company = CertifaktService.getCompany(txtCompanyRuc.getText());
+            Optional<CompanyDto> optionalCompany = CertifaktService.getCompany(txtCompanyRuc.getText());
 
-            this.dispose();
-            
-            CompanyView companyView = new CompanyView(company);
-            companyView.setVisible(true);
-            companyView.setLocationRelativeTo(null);
+            if (optionalCompany.isPresent()) {
+                this.dispose();
+                CompanyView companyView = new CompanyView(optionalCompany.get());
+                companyView.setVisible(true);
+                companyView.setLocationRelativeTo(null);
+            } else {
+                lblCompanyError.setText("La empresa con ruc: "+txtCompanyRuc.getText()+ " no esta registrado en certifakt");
+                JOptionPane.showMessageDialog(this, "La empresa con ruc: "+txtCompanyRuc.getText()+ " no esta registrado en certifakt", "Información", 
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (IllegalArgumentException e) {
+            lblCompanyError.setText("Error en los datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         } catch (IOException ex) {
             lblCompanyError.setText("Error: " + ex.getMessage());
             JOptionPane.showMessageDialog(this, "Error al obtener la empresa: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -866,19 +902,34 @@ public class WelcomeView extends javax.swing.JFrame {
             lblCompanyError.setText("Error inesperado: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnCompanyActionPerformed
 
     private void btnGenerarTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarTokenActionPerformed
+        btnAutoPaste.setText("Copiar");
         try {
             Long userId = Long.valueOf(txtUserId.getText());
-            String userToken = CertifaktService.getUserToken(userId);
-            System.out.println("Token: "+userToken);
-            jtaToken.setText(userToken);
-        } catch (Exception ex) {
-            lblTokenError.setText("Error: "+ex.getMessage());
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Validation.validarString("Id de usuario",userId);
+            
+            Optional<String> optionalUserToken = CertifaktService.getUserToken(userId);
+            if(optionalUserToken.isPresent()) {
+                jtaToken.setText(optionalUserToken.get());
+                lblTokenError.setText("");
+            } else {
+                lblTokenError.setText("No se pudo generar el token con id de usuario: "+userId);
+                JOptionPane.showMessageDialog(this, "No se pudo generar token con id de usuario: "+userId, 
+                        "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IllegalArgumentException e) {
+            lblTokenError.setText("Error en los datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            lblTokenError.setText("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al generar el token: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            lblTokenError.setText("Error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_btnGenerarTokenActionPerformed
 
     private void btnGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiaActionPerformed
@@ -887,18 +938,30 @@ public class WelcomeView extends javax.swing.JFrame {
             supportConsultRequest.setRucEmisor(txtGuiaRuc.getText());
             supportConsultRequest.setTipoComprobante(guiaMap.get((String) cmbGuiaTipo.getSelectedItem()));
             supportConsultRequest.setSerie(txtGuiaSerie.getText());
-            supportConsultRequest.setNumero(Integer.valueOf(txtGuiaNumero.getText()));
+            supportConsultRequest.setNumero(txtGuiaNumero.getText().isEmpty() ? 0 : Integer.valueOf(txtGuiaNumero.getText().trim()));
+            Validation.validarSolicitud(supportConsultRequest);
             
-            GuiaDto guiaDto = CertifaktService.getGuia(supportConsultRequest);
-            System.out.println("GUIA: "+guiaDto.toString());
+            Optional<GuiaDto> optionalGuiaDto = CertifaktService.getGuia(supportConsultRequest);
+            if(optionalGuiaDto.isPresent()) {
+                this.dispose();
+                GuiaView guiaView = new GuiaView(optionalGuiaDto.get());
+                guiaView.setVisible(true);
+                guiaView.setLocationRelativeTo(null);
+            } else {
+                lblGuiaError.setText("No se encontró la guia "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero());
+                JOptionPane.showMessageDialog(this, "No se encontró la guia "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero(), 
+                        "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
             
-            GuiaView guiaView = new GuiaView(guiaDto);
-            this.dispose();
-            guiaView.setVisible(true);
-            guiaView.setLocationRelativeTo(null);
-        } catch(Exception ex) {
-            lblGuiaError.setText("Error inesperado: " + ex.getMessage());
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            lblGuiaError.setText("Error en los datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            lblGuiaError.setText("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al obtener la guia: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            lblGuiaError.setText("Error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuiaActionPerformed
 
@@ -919,9 +982,10 @@ public class WelcomeView extends javax.swing.JFrame {
 
     private void btnUserConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserConsultarActionPerformed
         try {
-            List<UserDto2> userList = CertifaktService.getUserList(txtUserRuc.getText());
+            String ruc = txtUserRuc.getText();
+            List<UserDto2> userList = CertifaktService.getUserList(ruc);
+            Validation.validarString("Ruc", ruc);
             if(!userList.isEmpty()) {
-                System.out.println("UserListSize: "+userList.size());
                 DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
                 model.setRowCount(0);
                 for (UserDto2 user : userList) {
@@ -930,11 +994,21 @@ public class WelcomeView extends javax.swing.JFrame {
                     model.addRow(fila);
                 }
             } else {
+               DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
+               model.setRowCount(0);
                lblUserError.setText("No existen usuarios asociados a la empresa en mención");
+               JOptionPane.showMessageDialog(this, "No existen usuarios asociados a la empresa en mención: "+ruc, 
+                        "Información", JOptionPane.INFORMATION_MESSAGE);
             } 
-        } catch (Exception ex) {
-            lblUserError.setText("Ocurrio un error en el servidor: "+ex.getMessage());
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException e) {
+            lblTokenError.setText("Error en los datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            lblTokenError.setText("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al obtener los usuarios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            lblTokenError.setText("Error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_btnUserConsultarActionPerformed
@@ -964,6 +1038,15 @@ public class WelcomeView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecciona una fila para continuar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnUserEditarActionPerformed
+
+    private void btnAutoPasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoPasteActionPerformed
+        String texto = jtaToken.getText(); // Obtener texto del JTextField
+        StringSelection stringSelection = new StringSelection(texto);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+
+        btnAutoPaste.setText("Copiado");
+    }//GEN-LAST:event_btnAutoPasteActionPerformed
     
     private void postEnvironment() {
         String url = ConfigFile.obtenerUrl();
@@ -986,6 +1069,24 @@ public class WelcomeView extends javax.swing.JFrame {
             model.addColumn(col);
         }
     }
+    
+    public void limitarTextField(JTextField textField, int limite) {
+    ((AbstractDocument) textField.getDocument()).setDocumentFilter(new DocumentFilter() {
+        @Override
+        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
+            if ((fb.getDocument().getLength() + text.length() - length) <= limite) {
+                super.replace(fb, offset, length, text, attrs);
+            }
+        }
+
+        @Override
+        public void insertString(FilterBypass fb, int offset, String text, AttributeSet attr) throws BadLocationException {
+            if ((fb.getDocument().getLength() + text.length()) <= limite) {
+                super.insertString(fb, offset, text, attr);
+            }
+        }
+    });
+}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAutoPaste;
@@ -1039,7 +1140,6 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblCompany;
     private javax.swing.JLabel lblCompanyError;
     private javax.swing.JLabel lblCompanyError1;
-    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblGuia;
     private javax.swing.JLabel lblGuia1;
     private javax.swing.JLabel lblGuiaError;
@@ -1053,6 +1153,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblUserError;
     private javax.swing.JLabel lblUsers;
     private javax.swing.JLabel lblVoucher1;
+    private javax.swing.JLabel lblVoucherError;
     private javax.swing.JTextField txtCompanyRuc;
     private javax.swing.JTextField txtComprobanteNumero;
     private javax.swing.JTextField txtComprobanteRucEmisor;

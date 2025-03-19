@@ -322,7 +322,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblError" max="32767" attributes="0"/>
+                              <Component id="lblVoucherError" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -354,7 +354,7 @@
                               <EmptySpace pref="29" max="32767" attributes="0"/>
                               <Component id="btnVoucher" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="lblError" min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="lblVoucherError" min="-2" pref="39" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -448,7 +448,7 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JLabel" name="lblError">
+                    <Component class="javax.swing.JLabel" name="lblVoucherError">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="33" red="ff" type="rgb"/>
@@ -522,15 +522,15 @@
                                   <Component id="lblGuiaTipo" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblGuiaSerieNumero" alignment="1" min="-2" pref="263" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cmbGuiaTipo" alignment="1" min="-2" pref="215" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="txtGuiaSerie" min="-2" pref="103" max="-2" attributes="0"/>
+                              <EmptySpace pref="124" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtGuiaSerie" min="-2" pref="115" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtGuiaNumero" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <Component id="txtGuiaNumero" pref="109" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="txtGuiaRuc" alignment="1" min="-2" pref="215" max="-2" attributes="0"/>
+                                  <Component id="cmbGuiaTipo" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtGuiaRuc" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           </Group>
@@ -716,10 +716,8 @@
                           <EmptySpace pref="19" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="lblTokenError" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jPanel6" min="-2" pref="718" max="-2" attributes="0"/>
-                                  <Component id="lblGuia1" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jPanel6" alignment="0" min="-2" pref="718" max="-2" attributes="0"/>
+                              <Component id="lblGuia1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       </Group>
@@ -870,11 +868,14 @@
                     </Container>
                     <Component class="javax.swing.JButton" name="btnAutoPaste">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="A"/>
+                        <Property name="text" type="java.lang.String" value="Copiar"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAutoPasteActionPerformed"/>
+                      </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="650" y="250" width="30" height="-1"/>
+                          <AbsoluteConstraints x="590" y="250" width="90" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -893,6 +894,12 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTokenError">
+                  <Properties>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="33" green="33" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -1054,6 +1061,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="33" red="ff" type="rgb"/>
                         </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1173,7 +1181,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="70" width="190" height="430"/>
+              <AbsoluteConstraints x="0" y="70" width="190" height="440"/>
             </Constraint>
           </Constraints>
 
@@ -1198,7 +1206,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="189" max="32767" attributes="0"/>
+                      <EmptySpace pref="199" max="32767" attributes="0"/>
                       <Component id="btnCompanies" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnVouchers" min="-2" max="-2" attributes="0"/>

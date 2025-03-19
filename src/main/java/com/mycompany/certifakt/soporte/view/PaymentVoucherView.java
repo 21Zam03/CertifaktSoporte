@@ -7,9 +7,12 @@ package com.mycompany.certifakt.soporte.view;
 import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 import com.mycompany.certifakt.soporte.payload.request.PaymentVoucherRequest;
+import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
 import java.awt.Cursor;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -211,32 +214,41 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        /*Servicio de guardar*/
-       
-        PaymentVoucherRequest paymentVoucherRequest = new PaymentVoucherRequest();
-        paymentVoucherRequest.setPaymentVoucherId(paymentVoucherId);
-        paymentVoucherRequest.setFechaEmision(txtFechaEmision.getText());
-        paymentVoucherRequest.setTipoComprobante(String.valueOf(tipoMap.get(cmbTipo.getSelectedItem())));
-        paymentVoucherRequest.setSerie(txtSerie.getText());
-        paymentVoucherRequest.setNumero(Integer.valueOf(txtNumero.getText()));
-        paymentVoucherRequest.setNumDocIdentReceptor(txtNumeroReceptor.getText());
-        paymentVoucherRequest.setDenominacionReceptor(txtDenominacionReceptor.getText());
-        paymentVoucherRequest.setMontoTotalVenta(Double.valueOf(txtMontoTotalVenta.getText()));
-        paymentVoucherRequest.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
-        paymentVoucherRequest.setEstadoSunat(String.valueOf(cmbEstadoSunat.getSelectedItem()));
+        try {
+            PaymentVoucherRequest paymentVoucherRequest = new PaymentVoucherRequest();
+            paymentVoucherRequest.setPaymentVoucherId(paymentVoucherId);
+            paymentVoucherRequest.setFechaEmision(txtFechaEmision.getText());
+            paymentVoucherRequest.setTipoComprobante(String.valueOf(tipoMap.get(cmbTipo.getSelectedItem())));
+            paymentVoucherRequest.setSerie(txtSerie.getText());
+            paymentVoucherRequest.setNumero(Integer.valueOf(txtNumero.getText()));
+            paymentVoucherRequest.setNumDocIdentReceptor(txtNumeroReceptor.getText());
+            paymentVoucherRequest.setDenominacionReceptor(txtDenominacionReceptor.getText());
+            paymentVoucherRequest.setMontoTotalVenta(Double.valueOf(txtMontoTotalVenta.getText()));
+            paymentVoucherRequest.setEstado(String.valueOf(cmbEstado.getSelectedItem()));
+            paymentVoucherRequest.setEstadoSunat(String.valueOf(cmbEstadoSunat.getSelectedItem()));
         
-        System.out.println("Voucher: "+ paymentVoucherRequest.toString());
-        
-        Boolean isUpdated = CertifaktService.updatePaymentVoucher(paymentVoucherRequest);
-        if(isUpdated != null && isUpdated == true) {
-            JOptionPane.showMessageDialog(null, "Los datos se actualizaron correctamente.", "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-            WelcomeView welcomeView = new WelcomeView();
-            welcomeView.setVisible(true);
-            welcomeView.setLocationRelativeTo(null);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            Optional<SupportResponse> optionalSupportResponse = CertifaktService.updatePaymentVoucher(paymentVoucherRequest);
+            if(optionalSupportResponse.isPresent()) {
+                SupportResponse supportResponse = optionalSupportResponse.get();
+                if(supportResponse.getIsSuccess() == true) {
+                    JOptionPane.showMessageDialog(null, "Los datos se actualizaron correctamente.", "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                    WelcomeView welcomeView = new WelcomeView();
+                    welcomeView.setVisible(true);
+                    welcomeView.setLocationRelativeTo(null);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: La respuesta de la api es nula", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar los datos del comprobante: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }   
     }//GEN-LAST:event_btnGuardarActionPerformed
     
     private void loadImageIcon() {

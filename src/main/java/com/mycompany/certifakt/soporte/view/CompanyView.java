@@ -9,8 +9,10 @@ import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
 import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
 import java.awt.Cursor;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -231,19 +233,28 @@ public class CompanyView extends javax.swing.JFrame {
             companyRequest.setViewOtroComprobante(ckbVerOtroComprobante.isSelected());
             companyRequest.setViewCotizacion(ckbVerCotizacion.isSelected());
 
-            SupportResponse supportResponse = CertifaktService.updateCompany(companyRequest);
-            if (supportResponse.getIsSuccess()!=false) {
-                JOptionPane.showMessageDialog(null, supportResponse.getMessage(), "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-                WelcomeView welcomeView = new WelcomeView();
-                welcomeView.setVisible(true);
-                welcomeView.setLocationRelativeTo(null);
+            Optional<SupportResponse> optionalSupportResponse = CertifaktService.updateCompany(companyRequest);
+            
+            if(optionalSupportResponse.isPresent()) {
+                SupportResponse supportResponse = optionalSupportResponse.get();
+                if (supportResponse.getIsSuccess() == true) {
+                    JOptionPane.showMessageDialog(null, supportResponse.getMessage(), "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                    WelcomeView welcomeView = new WelcomeView();
+                    welcomeView.setVisible(true);
+                    welcomeView.setLocationRelativeTo(null);
+                } else {
+                    JOptionPane.showMessageDialog(null, supportResponse.getMessage(), "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, supportResponse.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error: La respuesta de la api es nula", "Informacion", JOptionPane.INFORMATION_MESSAGE);
             }
-     
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar los datos de la empresa: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
