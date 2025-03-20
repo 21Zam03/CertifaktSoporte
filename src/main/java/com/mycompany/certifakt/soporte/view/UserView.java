@@ -4,10 +4,15 @@
  */
 package com.mycompany.certifakt.soporte.view;
 
+import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
 import com.mycompany.certifakt.soporte.payload.request.UserRequest;
+import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
 import java.awt.Cursor;
+import java.io.IOException;
+import java.util.Optional;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class UserView extends javax.swing.JFrame {
     
@@ -32,7 +37,7 @@ public class UserView extends javax.swing.JFrame {
         ckbEstado.setSelected(userDto2.getEstado());
         txtFullName.setText(userDto2.getFullName());
         txtPassword.setText(userDto2.getPassword());
-        txtNombreUsuario.setText(userDto2.getFullName());
+        txtNombreUsuario.setText(userDto2.getDeLogin());
         ckbPdfUnico.setSelected(userDto2.getPdfUnico());
     }
 
@@ -181,30 +186,42 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+            UserRequest userRequest = new UserRequest();
+            userRequest.setUserID(userId);
+            userRequest.setDni(txtDni.getText());
+            userRequest.setEstado(ckbEstado.isSelected());
+            userRequest.setFullName(txtFullName.getText());
+            userRequest.setPassword(txtPassword.getText());
+            userRequest.setTypeUser(typeUser);
+            userRequest.setDeLogin(txtNombreUsuario.getText());
+            userRequest.setChangePass(changePass);
+            userRequest.setPdfUnico(ckbPdfUnico.isSelected());
+            System.out.println("User to edit: "+ userRequest.toString());
 
-        UserRequest userRequest = new UserRequest();
-        userRequest.setUserID(userId);
-        userRequest.setDni(txtDni.getText());
-        userRequest.setEstado(ckbEstado.isSelected());
-        userRequest.setFullName(txtFullName.getText());
-        userRequest.setPassword(txtPassword.getText());
-        userRequest.setTypeUser(typeUser);
-        userRequest.setDeLogin(txtNombreUsuario.getText());
-        userRequest.setChangePass(changePass);
-        userRequest.setPdfUnico(ckbPdfUnico.isSelected());
-        System.out.println("User to edit: "+ userRequest.toString());
-/*
-        Boolean isUpdated = CertifaktService.updateGuia(guiaRequest);
-        if(isUpdated != null && isUpdated == true) {
-            JOptionPane.showMessageDialog(null, "Los datos se actualizaron correctamente.", "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
-            WelcomeView welcomeView = new WelcomeView();
-            welcomeView.setVisible(true);
-            welcomeView.setLocationRelativeTo(null);
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al actualizar los datos.", "Error", JOptionPane.ERROR_MESSAGE);
+            Optional<SupportResponse> optionalSupportResponse = CertifaktService.updateUser(userRequest);
+
+            if(optionalSupportResponse.isPresent()) {
+                SupportResponse supportResponse = optionalSupportResponse.get();
+                if (supportResponse.getIsSuccess() == true) {
+                    JOptionPane.showMessageDialog(null, supportResponse.getMessage(), "Actualización Exitosa", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                    WelcomeView welcomeView = new WelcomeView();
+                    welcomeView.setVisible(true);
+                    welcomeView.setLocationRelativeTo(null);
+                } else {
+                    JOptionPane.showMessageDialog(null, supportResponse.getMessage(), "Información", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Error: La respuesta de la api es nula", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar los datos del usuario " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-*/
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtNombreUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreUsuarioActionPerformed

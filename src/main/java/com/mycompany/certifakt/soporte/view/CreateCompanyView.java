@@ -8,6 +8,8 @@ import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.payload.dto.Company;
 import com.mycompany.certifakt.soporte.payload.request.CreateCompanyRequest;
 import java.awt.Cursor;
+import java.io.IOException;
+import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -194,18 +196,22 @@ public class CreateCompanyView extends javax.swing.JFrame {
 
             createCompanyRequest.setCompany(company);
 
-            Boolean isCreated = CertifaktService.createCompany(createCompanyRequest);
-            if(isCreated != null && isCreated == true) {
+            Optional<Object> optionalSupportResponse = CertifaktService.createCompany(createCompanyRequest);
+            if(optionalSupportResponse.isPresent()) {
                 JOptionPane.showMessageDialog(null, "Se ha registrado la empresa correctamente.", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 WelcomeView welcomeView = new WelcomeView();
                 welcomeView.setVisible(true);
-                welcomeView.setLocationRelativeTo(null);
+                welcomeView.setLocationRelativeTo(null);         
             } else {
                 JOptionPane.showMessageDialog(null, "El cuerpo de la respuesta es nulo", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al registrar la empresa: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCrearActionPerformed
 

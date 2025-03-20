@@ -46,14 +46,15 @@ public class CertifaktService {
         String API_URL = ConfigFile.obtenerUrl();
         LoginRequest loginRequest = new LoginRequest(username, password);
         
-        UserLoginResponse userLoginResponse = MethodHttp.post(API_URL+LOGIN_ENDPOINT, null, loginRequest, UserLoginResponse.class);
+        try {
+            UserLoginResponse userLoginResponse = MethodHttp.post(API_URL+LOGIN_ENDPOINT, null, loginRequest, UserLoginResponse.class);
         
-        if (userLoginResponse != null && userLoginResponse.getAccessToken() != null) {
-            System.out.println("Token obtenido: " + userLoginResponse.getAccessToken());
-            ConfigFile.guardarToken(userLoginResponse.getAccessToken());
-            return true;
-        } else {    
-            System.out.println("Error en autenticación.");
+            if (userLoginResponse != null && userLoginResponse.getAccessToken() != null) {               
+                ConfigFile.guardarToken(userLoginResponse.getAccessToken());
+                return true;
+            } 
+            return false;
+        } catch (CustomHttpException e) {
             return false;
         }
     }
@@ -129,23 +130,26 @@ public class CertifaktService {
         }
     }
     
-    public static Boolean createCompany(CreateCompanyRequest createCompanyRequest) {
+    public static Optional<Object> createCompany(CreateCompanyRequest createCompanyRequest) throws IOException {
         String token = ConfigFile.obtenerToken();
         String API_URL = ConfigFile.obtenerUrl();
         
-        Object supportResponse = null;
         try {
-            supportResponse = MethodHttp.post(API_URL+CREAR_COMPANY_ENDPOINT, token, createCompanyRequest, Object.class);
-            if(supportResponse == null) {
-                return null;
-            } else {
-                return true;
-            }
+            Object userObject = MethodHttp.post(API_URL+CREAR_COMPANY_ENDPOINT, token, createCompanyRequest, Object.class);
+            if(userObject == null) {
+                return Optional.empty();
+            } 
+            return Optional.of(userObject);
+        } catch (CustomHttpException e) {
+            System.err.println("Error HTTP: " + e.getMessage());
+            return Optional.empty();
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error en los parámetros: " + e.getMessage());
+            throw e;
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-            //System.err.println("Error en la solicitud POST: " + e.getMessage());
-            //e.printStackTrace();
-        }   
+            System.err.println("Error inesperado de conexión: " + e.getMessage());
+            throw e; 
+        }  
     }
     
     public static Optional<PaymentVoucherDto> getPaymentVoucher(SupportConsultRequest supportConsultRequest) throws IOException {
@@ -214,19 +218,25 @@ public class CertifaktService {
         }
     }
     
-    public static Boolean updateGuia(GuiaRequest guiaRequest) {
+    public static Optional<SupportResponse> updateGuia(GuiaRequest guiaRequest) throws IOException {
         String token = ConfigFile.obtenerToken();
         String API_URL = ConfigFile.obtenerUrl();
-        SupportResponse supportResponse = null;
         try {
-            supportResponse = MethodHttp.put(API_URL+GUIA_ENDPOINT, token, guiaRequest, SupportResponse.class);
+            SupportResponse supportResponse = MethodHttp.put(API_URL+GUIA_ENDPOINT, token, guiaRequest, SupportResponse.class);
+            if(supportResponse == null || supportResponse.getMessage() == null || supportResponse.getIsSuccess() == null) {
+                return Optional.empty();
+            }
+            return Optional.of(supportResponse);
+        } catch (CustomHttpException e) {
+            System.err.println("Error HTTP: " + e.getMessage());
+            return Optional.empty();
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error en los parámetros: " + e.getMessage());
+            throw e;
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error inesperado de conexión: " + e.getMessage());
+            throw e; 
         }
-        if(supportResponse == null) {
-            return null;
-        }
-        return supportResponse.getIsSuccess();
     }
     
     public static Optional<String> getUserToken(Long userId) throws IOException {
@@ -266,18 +276,24 @@ public class CertifaktService {
         }
     }
     
-    public static Boolean UpdateUser(UserRequest userRequest) {
+    public static Optional<SupportResponse> updateUser(UserRequest userRequest) throws IOException {
         String token = ConfigFile.obtenerToken();
         String API_URL = ConfigFile.obtenerUrl();
-        SupportResponse supportResponse = null;
         try {
-            supportResponse = MethodHttp.put(API_URL, token, userRequest, SupportResponse.class);
+            SupportResponse supportResponse = MethodHttp.put(API_URL, token, userRequest, SupportResponse.class);
+            if(supportResponse == null || supportResponse.getMessage() == null || supportResponse.getIsSuccess() == null) {
+                return Optional.empty();
+            }
+            return Optional.of(supportResponse);
+        } catch (CustomHttpException e) {
+            System.err.println("Error HTTP: " + e.getMessage());
+            return Optional.empty();
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error en los parámetros: " + e.getMessage());
+            throw e;
         } catch (IOException e) {
-            throw new RuntimeException(e.getMessage());
-        } 
-        if(supportResponse == null) {
-            return null;
+            System.err.println("Error inesperado de conexión: " + e.getMessage());
+            throw e; 
         }
-        return supportResponse.getIsSuccess();
     }
 }

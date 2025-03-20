@@ -27,6 +27,10 @@ public class MethodHttp {
     private static final Logger logger = Logger.getLogger(MethodHttp.class.getName());
     
     public static <T> T post(String url, String token, Object requestBody, Class<T> responseType) {
+        if (url == null || url.isEmpty()) {
+            throw new IllegalArgumentException("La URL base no puede ser nula o vacía");
+        }
+        
         String jsonBody = gson.toJson(requestBody);
 
         RequestBody body = RequestBody.create(jsonBody, MediaType.get("application/json; charset=utf-8"));
@@ -36,17 +40,28 @@ public class MethodHttp {
                 .post(body)
                 .addHeader("Authorization", token != null && !token.trim().isEmpty() ? "Bearer "+ token : "")
                 .build();
-
+        logger.log(Level.INFO, "PUT REQUEST: {0} BodyRequest: {1}", new Object[]{request, jsonBody});
+        
         try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
-                return gson.fromJson(response.body().string(), responseType);
-            } else {
-                System.out.println("Error en la solicitud: " + response.code());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            int statusCode = response.code();
+            ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "Respuesta vacía";
+            if (!response.isSuccessful()) {
+                logger.log(Level.WARNING, "ERROR RESPONSE ({0}): {1}", new Object[]{statusCode, responseBodyString});
+                try {
+                    JsonObject jsonError = JsonParser.parseString(responseBodyString).getAsJsonObject();
+                    String mensajeError = jsonError.has("mensaje") ? jsonError.get("mensaje").getAsString() : "Error desconocido";
+                    throw new CustomHttpException(response.code(), mensajeError);
+                } catch (JsonSyntaxException e) {
+                    throw new CustomHttpException(response.code(), "No se pudo leer el JSON: "+e.getMessage());
+                }
+            } 
+            logger.log(Level.INFO, "RESPONSE ({0}): {1}", new Object[]{statusCode, responseBody});
+            return gson.fromJson(responseBodyString, responseType);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "ERROR INESPERADO: {0} ", e.getMessage());
+            throw new CustomHttpException(-1, "Error inesperado: "+e.getMessage());
         }
-        return null;
     }
     
     public static <T> T get(String baseUrl, Map<String, String> params, String bearerToken, Class<T> responseType) throws IOException {
