@@ -59,22 +59,21 @@ public class CertifaktService {
         }
     }
     
-    public static UserDto validateSession() {
+    public static UserDto validateSession() throws IOException {
         String token = ConfigFile.obtenerToken();
         if(token == null || token.isEmpty()) {
             return null;
         } 
         Map<String, String> params = new HashMap<>();
         String API_URL = ConfigFile.obtenerUrl();
-        UserLoginResponse userLoginResponse = null;
         try {
-            userLoginResponse = MethodHttp.get(API_URL+VALIDATE_ENDPOINT, params, token, UserLoginResponse.class);
+            UserLoginResponse userLoginResponse = MethodHttp.get(API_URL+VALIDATE_ENDPOINT, params, token, UserLoginResponse.class);
             System.out.println("Usuario logueado: " + userLoginResponse.getFullName());
             return new UserDto();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (CustomHttpException e) {
+            System.err.println("Error HTTP: " + e.getMessage());
             return null;
-        }
+        } 
     }
     
     public static Optional<CompanyDto> getCompany(String ruc) throws IOException {

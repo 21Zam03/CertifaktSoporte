@@ -9,10 +9,11 @@ import com.mycompany.certifakt.soporte.config.ConfigFile;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
 import com.mycompany.certifakt.soporte.view.LoginView;
 import com.mycompany.certifakt.soporte.view.WelcomeView;
+import java.io.IOException;
 
 public class CertifaktSoporte {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConfigFile.cargarConfiguracion();
         
         UserDto userDto = CertifaktService.validateSession();
