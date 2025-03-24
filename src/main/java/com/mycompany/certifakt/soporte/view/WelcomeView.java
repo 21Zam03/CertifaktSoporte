@@ -45,8 +45,8 @@ public class WelcomeView extends javax.swing.JFrame {
         }
         comprobanteMap.put("Factura", "01");
         comprobanteMap.put("Boleta", "03");
-        comprobanteMap.put("Nota de crédito", "07");
-        comprobanteMap.put("Nota de débito", "08");
+        comprobanteMap.put("Nota de credito", "07");
+        comprobanteMap.put("Nota de debito", "08");
         guiaMap.put("Guia de remision remitente", "09");
         guiaMap.put("Guia de remision transportista", "31");
         

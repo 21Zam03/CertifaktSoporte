@@ -25,8 +25,8 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         this.paymentVoucherId = paymentVoucher.getPaymentVoucherId();
         tipoMap.put("Factura", "01");
         tipoMap.put("Boleta", "03");
-        tipoMap.put("Nota de crédtito", "07");
-        tipoMap.put("Nota de débito", "08");
+        tipoMap.put("Nota de credito", "07");
+        tipoMap.put("Nota de debito", "08");
         initComponents();
         loadImageIcon();
         this.setResizable(false);
@@ -41,6 +41,7 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         cmbEstado.addItem("01");
         cmbEstado.addItem("02");
         cmbEstado.addItem("05");
+        cmbEstado.addItem("06");
         cmbEstado.addItem("07");
         cmbEstado.addItem("08");
         cmbEstado.addItem("09");
@@ -259,9 +260,9 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     public String obtenerTipo(String codigo) {
         return switch (codigo) {
             case "01" -> "Factura";
-            case "03" -> "Boleta de Venta";
-            case "07" -> "Nota de Crédito";
-            case "08" -> "Nota de Débito";
+            case "03" -> "Boleta";
+            case "07" -> "Nota de credito";
+            case "08" -> "Nota de debito";
             default -> "Desconocido";
         };
     }
