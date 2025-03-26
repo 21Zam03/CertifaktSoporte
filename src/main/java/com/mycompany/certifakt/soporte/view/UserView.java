@@ -32,6 +32,7 @@ public class UserView extends javax.swing.JFrame {
         btnGuardar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         ckbEstado.setCursor(new Cursor(Cursor.HAND_CURSOR));
         ckbPdfUnico.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnChangePassword.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         txtDni.setText(userDto2.getDni());
         ckbEstado.setSelected(userDto2.getEstado());
@@ -58,6 +59,7 @@ public class UserView extends javax.swing.JFrame {
         lblSerie = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblUser = new javax.swing.JLabel();
+        btnChangePassword = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
@@ -117,20 +119,26 @@ public class UserView extends javax.swing.JFrame {
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
         lblUser.setText("ID usuario:");
 
+        btnChangePassword.setText("Cambiar contraseña");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 924, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(157, 157, 157))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblUser, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(btnChangePassword))
                 .addContainerGap())
         );
 
@@ -234,6 +242,7 @@ public class UserView extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnChangePassword;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JCheckBox ckbEstado;
     private javax.swing.JCheckBox ckbPdfUnico;
