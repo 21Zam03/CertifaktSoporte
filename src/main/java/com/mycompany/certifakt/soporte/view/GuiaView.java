@@ -37,6 +37,7 @@ public class GuiaView extends javax.swing.JFrame {
         cmbEstado.addItem("01");
         cmbEstado.addItem("02");
         cmbEstado.addItem("05");
+        cmbEstado.addItem("06");
         cmbEstado.addItem("07");
         cmbEstado.addItem("08");
         cmbEstado.addItem("09");

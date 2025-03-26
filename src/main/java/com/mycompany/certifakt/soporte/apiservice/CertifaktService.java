@@ -279,7 +279,7 @@ public class CertifaktService {
         String token = ConfigFile.obtenerToken();
         String API_URL = ConfigFile.obtenerUrl();
         try {
-            SupportResponse supportResponse = MethodHttp.put(API_URL, token, userRequest, SupportResponse.class);
+            SupportResponse supportResponse = MethodHttp.put(API_URL+USER_ENDPOINT, token, userRequest, SupportResponse.class);
             if(supportResponse == null || supportResponse.getMessage() == null || supportResponse.getIsSuccess() == null) {
                 return Optional.empty();
             }
