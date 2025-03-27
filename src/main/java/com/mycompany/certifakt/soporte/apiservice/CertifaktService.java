@@ -13,6 +13,7 @@ import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
+import com.mycompany.certifakt.soporte.payload.request.ChangePasswordRequest;
 import com.mycompany.certifakt.soporte.payload.request.CompanyRequest;
 import com.mycompany.certifakt.soporte.payload.request.CreateCompanyRequest;
 import com.mycompany.certifakt.soporte.payload.request.GuiaRequest;
@@ -40,6 +41,7 @@ public class CertifaktService {
     private static final String GUIA_ENDPOINT = "api/support/guia";
     private static final String CREAR_COMPANY_ENDPOINT = "api/auth/register";
     private static final String USER_ENDPOINT = "api/support/user";
+    private static final String CHANGE_PASSWORD_ENDPOINT = "/changePassword";
    
     
     public static Boolean login(String username, String password) {
@@ -280,6 +282,28 @@ public class CertifaktService {
         String API_URL = ConfigFile.obtenerUrl();
         try {
             SupportResponse supportResponse = MethodHttp.put(API_URL+USER_ENDPOINT, token, userRequest, SupportResponse.class);
+            if(supportResponse == null || supportResponse.getMessage() == null || supportResponse.getIsSuccess() == null) {
+                return Optional.empty();
+            }
+            return Optional.of(supportResponse);
+        } catch (CustomHttpException e) {
+            System.err.println("Error HTTP: " + e.getMessage());
+            return Optional.empty();
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error en los parámetros: " + e.getMessage());
+            throw e;
+        } catch (IOException e) {
+            System.err.println("Error inesperado de conexión: " + e.getMessage());
+            throw e; 
+        }
+    }
+    
+    public static Optional<SupportResponse> changePassword(ChangePasswordRequest changePasswordRequest) throws IOException {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        
+        try {
+            SupportResponse supportResponse = MethodHttp.put(API_URL+USER_ENDPOINT+CHANGE_PASSWORD_ENDPOINT, token, changePasswordRequest, SupportResponse.class);
             if(supportResponse == null || supportResponse.getMessage() == null || supportResponse.getIsSuccess() == null) {
                 return Optional.empty();
             }

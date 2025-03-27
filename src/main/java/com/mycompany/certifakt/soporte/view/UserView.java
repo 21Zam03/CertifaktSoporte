@@ -19,8 +19,10 @@ public class UserView extends javax.swing.JFrame {
     private final Long userId;
     private final String typeUser;
     private final Boolean changePass;
+    private final UserDto2 userDto2;
     
     public UserView(UserDto2 userDto2) {
+        this.userDto2 = userDto2;
         this.userId = userDto2.getUserID();
         this.typeUser = userDto2.getTypeUser();
         this.changePass = userDto2.getChangePass();
@@ -37,7 +39,6 @@ public class UserView extends javax.swing.JFrame {
         txtDni.setText(userDto2.getDni());
         ckbEstado.setSelected(userDto2.getEstado());
         txtFullName.setText(userDto2.getFullName());
-        txtPassword.setText(userDto2.getPassword());
         txtNombreUsuario.setText(userDto2.getDeLogin());
         ckbPdfUnico.setSelected(userDto2.getPdfUnico());
     }
@@ -63,8 +64,6 @@ public class UserView extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jLabel10 = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         jSeparator6 = new javax.swing.JSeparator();
         lblNumDocIdentReceptor2 = new javax.swing.JLabel();
         txtFechaEmision1 = new javax.swing.JTextField();
@@ -120,6 +119,11 @@ public class UserView extends javax.swing.JFrame {
         lblUser.setText("ID usuario:");
 
         btnChangePassword.setText("Cambiar contraseña");
+        btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangePasswordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -128,9 +132,9 @@ public class UserView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
+                .addGap(55, 55, 55)
+                .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(158, 158, 158))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,26 +150,22 @@ public class UserView extends javax.swing.JFrame {
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 960, 10));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 960, 10));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 760, 10));
-
-        jLabel10.setText("Contraseña:");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 140, 20));
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 270, -1));
         jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 760, 10));
 
         lblNumDocIdentReceptor2.setText("Pdf Unico:");
-        jPanel2.add(lblNumDocIdentReceptor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 150, 20));
+        jPanel2.add(lblNumDocIdentReceptor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 150, 20));
         jPanel2.add(txtFechaEmision1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 180, -1));
 
         lblNumDocIdentReceptor3.setText("Nombre de usuario:");
-        jPanel2.add(lblNumDocIdentReceptor3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 150, 20));
+        jPanel2.add(lblNumDocIdentReceptor3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 150, 20));
 
         txtNombreUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreUsuarioActionPerformed(evt);
             }
         });
-        jPanel2.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, 270, -1));
-        jPanel2.add(ckbPdfUnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 150, -1, -1));
+        jPanel2.add(txtNombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, 270, -1));
+        jPanel2.add(ckbPdfUnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 100, -1, -1));
         jPanel2.add(ckbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 960, 190));
@@ -200,7 +200,7 @@ public class UserView extends javax.swing.JFrame {
             userRequest.setDni(txtDni.getText());
             userRequest.setEstado(ckbEstado.isSelected());
             userRequest.setFullName(txtFullName.getText());
-            userRequest.setPassword(txtPassword.getText());
+            //userRequest.setPassword(txtPassword.getText());
             userRequest.setTypeUser(typeUser);
             userRequest.setDeLogin(txtNombreUsuario.getText());
             userRequest.setChangePass(changePass);
@@ -236,6 +236,13 @@ public class UserView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreUsuarioActionPerformed
 
+    private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
+        this.dispose();
+        PasswordChangeView passwordChangeView = new PasswordChangeView(this.userDto2);
+        passwordChangeView.setVisible(true);
+        passwordChangeView.setLocationRelativeTo(null);
+    }//GEN-LAST:event_btnChangePasswordActionPerformed
+
     private void loadImageIcon() {
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/icono.png"));
         this.setIconImage(imageIcon.getImage());
@@ -248,7 +255,6 @@ public class UserView extends javax.swing.JFrame {
     private javax.swing.JCheckBox ckbPdfUnico;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -266,6 +272,5 @@ public class UserView extends javax.swing.JFrame {
     private javax.swing.JTextField txtFechaEmision1;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtNombreUsuario;
-    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
