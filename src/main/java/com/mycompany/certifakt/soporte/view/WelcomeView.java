@@ -10,6 +10,7 @@ import com.mycompany.certifakt.soporte.config.ConfigFile;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
+import com.mycompany.certifakt.soporte.payload.dto.InfoDownloadDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
 import com.mycompany.certifakt.soporte.payload.request.SupportConsultRequest;
 import com.mycompany.certifakt.soporte.validation.Validation;
@@ -22,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -95,6 +98,9 @@ public class WelcomeView extends javax.swing.JFrame {
         btnGenerarToken.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnUserEditar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.cargarTabla();
+    
+        //Descarga
+        btnConsultarDescarga.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     @SuppressWarnings("unchecked")
@@ -166,6 +172,28 @@ public class WelcomeView extends javax.swing.JFrame {
         lblUserError = new javax.swing.JLabel();
         btnUserEditar = new javax.swing.JButton();
         lblUsers = new javax.swing.JLabel();
+        jpDownloads = new javax.swing.JPanel();
+        lblUsers1 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        lblTokens2 = new javax.swing.JLabel();
+        txtRucDescarga = new javax.swing.JTextField();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnDescargar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        lblCliente = new javax.swing.JLabel();
+        lblCantidad = new javax.swing.JLabel();
+        cbxDesdeAño = new javax.swing.JComboBox<>();
+        cbxDesdeDia = new javax.swing.JComboBox<>();
+        cbxDesdeMes = new javax.swing.JComboBox<>();
+        cbxHastaDia = new javax.swing.JComboBox<>();
+        cbxHastaMonth = new javax.swing.JComboBox<>();
+        cbxHastaYear = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        btnConsultarDescarga = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         txtEnvironment = new javax.swing.JLabel();
@@ -176,6 +204,7 @@ public class WelcomeView extends javax.swing.JFrame {
         btnGuias = new javax.swing.JButton();
         btnTokens = new javax.swing.JButton();
         btnUsers = new javax.swing.JToggleButton();
+        btnDownloadPdf = new javax.swing.JToggleButton();
 
         jButton1.setText("jButton1");
 
@@ -262,7 +291,7 @@ public class WelcomeView extends javax.swing.JFrame {
         jpÇlientsLayout.setHorizontalGroup(
             jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpÇlientsLayout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jpÇlientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,7 +304,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addComponent(lblCompany)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         jtpMenu.addTab("tab1", jpÇlients);
@@ -490,7 +519,7 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addComponent(btnGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblGuiaError, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpGuias.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 850, 320));
@@ -690,6 +719,164 @@ public class WelcomeView extends javax.swing.JFrame {
 
         jtpMenu.addTab("tab5", jpUsers);
 
+        jpDownloads.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblUsers1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblUsers1.setForeground(new java.awt.Color(153, 153, 153));
+        lblUsers1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblUsers1.setText("Descarga PDF");
+
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel15.setBackground(new java.awt.Color(0, 102, 204));
+        jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 255)));
+
+        lblTokens2.setBackground(new java.awt.Color(255, 255, 255));
+        lblTokens2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblTokens2.setForeground(new java.awt.Color(255, 255, 255));
+        lblTokens2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTokens2.setText("Busqueda");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTokens2, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTokens2, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 40));
+        jPanel14.add(txtRucDescarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 700, 30));
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel4.setText("Empresa:");
+
+        jLabel6.setText("INFORMACION:");
+
+        btnDescargar.setBackground(new java.awt.Color(0, 102, 204));
+        btnDescargar.setForeground(new java.awt.Color(255, 255, 255));
+        btnDescargar.setText("Descagar");
+        btnDescargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDescargarActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Cantidad de comprobantes:");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                        .addGap(0, 692, Short.MAX_VALUE)
+                        .addComponent(btnDescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel16Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel16Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(btnDescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
+        );
+
+        jPanel14.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 830, 220));
+
+        cbxDesdeAño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        jPanel14.add(cbxDesdeAño, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 100, 30));
+
+        cbxDesdeDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel14.add(cbxDesdeDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 100, 30));
+
+        cbxDesdeMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        jPanel14.add(cbxDesdeMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 100, 30));
+
+        cbxHastaDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel14.add(cbxHastaDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 100, 30));
+
+        cbxHastaMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        jPanel14.add(cbxHastaMonth, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 100, 30));
+
+        cbxHastaYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030" }));
+        jPanel14.add(cbxHastaYear, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 100, 30));
+
+        jLabel7.setText("Hasta");
+        jPanel14.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 60, 30));
+
+        jLabel8.setText("Desde");
+        jPanel14.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 60, 30));
+
+        btnConsultarDescarga.setBackground(new java.awt.Color(0, 102, 204));
+        btnConsultarDescarga.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultarDescarga.setText("Consultar");
+        btnConsultarDescarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarDescargaActionPerformed(evt);
+            }
+        });
+        jPanel14.add(btnConsultarDescarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 120, 30));
+
+        javax.swing.GroupLayout jpDownloadsLayout = new javax.swing.GroupLayout(jpDownloads);
+        jpDownloads.setLayout(jpDownloadsLayout);
+        jpDownloadsLayout.setHorizontalGroup(
+            jpDownloadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpDownloadsLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jpDownloadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblUsers1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
+        );
+        jpDownloadsLayout.setVerticalGroup(
+            jpDownloadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpDownloadsLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(lblUsers1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jtpMenu.addTab("tab6", jpDownloads);
+
         jPanel1.add(jtpMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 910, 530));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -777,25 +964,34 @@ public class WelcomeView extends javax.swing.JFrame {
             }
         });
 
+        btnDownloadPdf.setText("Descarga PDF");
+        btnDownloadPdf.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnDownloadPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDownloadPdfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnVouchers, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCompanies, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                        .addComponent(btnUsers, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTokens, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(btnGuias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDownloadPdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(289, Short.MAX_VALUE)
+                .addContainerGap(269, Short.MAX_VALUE)
                 .addComponent(btnCompanies)
                 .addGap(18, 18, 18)
                 .addComponent(btnVouchers)
@@ -805,7 +1001,9 @@ public class WelcomeView extends javax.swing.JFrame {
                 .addComponent(btnTokens)
                 .addGap(18, 18, 18)
                 .addComponent(btnUsers)
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(btnDownloadPdf)
+                .addGap(29, 29, 29))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 190, 530));
@@ -836,40 +1034,6 @@ public class WelcomeView extends javax.swing.JFrame {
         jtpMenu.setSelectedIndex(2);
     }//GEN-LAST:event_btnGuiasActionPerformed
 
-    private void btnVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoucherActionPerformed
-        try {
-            SupportConsultRequest supportConsultRequest = new SupportConsultRequest();
-            supportConsultRequest.setRucEmisor(txtComprobanteRucEmisor.getText().trim());
-            supportConsultRequest.setTipoComprobante(comprobanteMap.get((String) cmbComprobanteTipo.getSelectedItem()));
-            supportConsultRequest.setSerie(txtComprobanteSerie.getText().trim());
-            supportConsultRequest.setNumero(txtComprobanteNumero.getText().isEmpty() ? 0 : Integer.valueOf(txtComprobanteNumero.getText().trim()));
-            Validation.validarSolicitud(supportConsultRequest);
-            
-            Optional<PaymentVoucherDto> optionalPaymentVoucher = CertifaktService.getPaymentVoucher(supportConsultRequest);
-            if(optionalPaymentVoucher.isPresent()) {
-                this.dispose();
-                PaymentVoucherView paymentVoucherView = new PaymentVoucherView(optionalPaymentVoucher.get());
-                paymentVoucherView.setVisible(true);
-                paymentVoucherView.setLocationRelativeTo(null);
-            } else {
-                lblCompanyError.setText("No se encontró el comprobante "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero());
-                JOptionPane.showMessageDialog(this, "No se encontró el comprobante "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero(), 
-                        "Información", JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-        } catch (IllegalArgumentException e) {
-            lblVoucherError.setText("Error en los datos: " + e.getMessage());
-            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-        } catch (IOException ex) {
-            lblVoucherError.setText("Error: " + ex.getMessage());
-            JOptionPane.showMessageDialog(this, "Error al obtener el comprobante: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (Exception e) {
-            lblVoucherError.setText("Error inesperado: " + e.getMessage());
-            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }//GEN-LAST:event_btnVoucherActionPerformed
-
     private void btnTokensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTokensActionPerformed
         jtpMenu.setSelectedIndex(3);
     }//GEN-LAST:event_btnTokensActionPerformed
@@ -878,48 +1042,100 @@ public class WelcomeView extends javax.swing.JFrame {
         jtpMenu.setSelectedIndex(4);
     }//GEN-LAST:event_btnUsersActionPerformed
 
-    private void btnCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyActionPerformed
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        ConfigFile.eliminarCredenciales();
+        LoginView loginView = new LoginView();
+        loginView.setVisible(true);
+        loginView.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnDownloadPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadPdfActionPerformed
+        jtpMenu.setSelectedIndex(5);
+    }//GEN-LAST:event_btnDownloadPdfActionPerformed
+
+    private void btnUserEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserEditarActionPerformed
+        int filaSeleccionada = jtUsers.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            Long id = (Long) jtUsers.getValueAt(filaSeleccionada, 0);
+            String dni = (String) jtUsers.getValueAt(filaSeleccionada, 1);
+            Boolean estado = (Boolean) jtUsers.getValueAt(filaSeleccionada, 2);
+            String fullName = (String) jtUsers.getValueAt(filaSeleccionada, 3);
+            String password = (String) jtUsers.getValueAt(filaSeleccionada, 4);
+            String typeUser = (String) jtUsers.getValueAt(filaSeleccionada, 5);
+            String deLogin = (String) jtUsers.getValueAt(filaSeleccionada, 6);
+            Boolean changePass = (Boolean) jtUsers.getValueAt(filaSeleccionada, 7);
+            Boolean pdfUnico = (Boolean) jtUsers.getValueAt(filaSeleccionada, 8);
+
+            UserDto2 userSelected = new UserDto2(id, dni, estado, fullName, password, typeUser, deLogin, changePass, pdfUnico);
+
+            System.out.println("Usuario seleccionado: " + userSelected);
+            UserView userView = new UserView(userSelected);
+            userView.setVisible(true);
+            userView.setLocationRelativeTo(null);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecciona una fila para continuar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUserEditarActionPerformed
+
+    private void btnUserConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserConsultarActionPerformed
         try {
-            Optional<CompanyDto> optionalCompany = CertifaktService.getCompany(txtCompanyRuc.getText());
-
-            if (optionalCompany.isPresent()) {
-                this.dispose();
-                CompanyView companyView = new CompanyView(optionalCompany.get());
-                companyView.setVisible(true);
-                companyView.setLocationRelativeTo(null);
+            String ruc = txtUserRuc.getText();
+            List<UserDto2> userList = CertifaktService.getUserList(ruc);
+            Validation.validarString("Ruc", ruc);
+            if(!userList.isEmpty()) {
+                DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
+                model.setRowCount(0);
+                for (UserDto2 user : userList) {
+                    Object[] fila = {user.getUserID(), user.getDni(), user.getEstado(), user.getFullName(), user.getPassword(), user.getTypeUser(), user.getDeLogin(),
+                        user.getChangePass(), user.getPdfUnico()};
+                    model.addRow(fila);
+                }
             } else {
-                lblCompanyError.setText("La empresa con ruc: "+txtCompanyRuc.getText()+ " no esta registrado en certifakt");
-                JOptionPane.showMessageDialog(this, "La empresa con ruc: "+txtCompanyRuc.getText()+ " no esta registrado en certifakt", "Información", 
-                        JOptionPane.INFORMATION_MESSAGE);
+                DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
+                model.setRowCount(0);
+                lblUserError.setText("No existen usuarios asociados a la empresa en mención");
+                JOptionPane.showMessageDialog(this, "No existen usuarios asociados a la empresa en mención: "+ruc,
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
             }
-
         } catch (IllegalArgumentException e) {
-            lblCompanyError.setText("Error en los datos: " + e.getMessage());
+            lblTokenError.setText("Error en los datos: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         } catch (IOException ex) {
-            lblCompanyError.setText("Error: " + ex.getMessage());
-            JOptionPane.showMessageDialog(this, "Error al obtener la empresa: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            lblTokenError.setText("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al obtener los usuarios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            lblCompanyError.setText("Error inesperado: " + e.getMessage());
+            lblTokenError.setText("Error inesperado: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_btnCompanyActionPerformed
+    }//GEN-LAST:event_btnUserConsultarActionPerformed
+
+    private void btnAutoPasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoPasteActionPerformed
+        String texto = jtaToken.getText(); // Obtener texto del JTextField
+        StringSelection stringSelection = new StringSelection(texto);
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+
+        btnAutoPaste.setText("Copiado");
+    }//GEN-LAST:event_btnAutoPasteActionPerformed
 
     private void btnGenerarTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarTokenActionPerformed
         btnAutoPaste.setText("Copiar");
         try {
             Long userId = Long.valueOf(txtUserId.getText());
             Validation.validarString("Id de usuario",userId);
-            
+
             Optional<String> optionalUserToken = CertifaktService.getUserToken(userId);
             if(optionalUserToken.isPresent()) {
                 jtaToken.setText(optionalUserToken.get());
                 lblTokenError.setText("");
             } else {
                 lblTokenError.setText("No se pudo generar el token con id de usuario: "+userId);
-                JOptionPane.showMessageDialog(this, "No se pudo generar token con id de usuario: "+userId, 
-                        "Información", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se pudo generar token con id de usuario: "+userId,
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IllegalArgumentException e) {
             lblTokenError.setText("Error en los datos: " + e.getMessage());
@@ -941,7 +1157,7 @@ public class WelcomeView extends javax.swing.JFrame {
             supportConsultRequest.setSerie(txtGuiaSerie.getText());
             supportConsultRequest.setNumero(txtGuiaNumero.getText().isEmpty() ? 0 : Integer.valueOf(txtGuiaNumero.getText().trim()));
             Validation.validarSolicitud(supportConsultRequest);
-            
+
             Optional<GuiaDto> optionalGuiaDto = CertifaktService.getGuia(supportConsultRequest);
             if(optionalGuiaDto.isPresent()) {
                 this.dispose();
@@ -950,10 +1166,10 @@ public class WelcomeView extends javax.swing.JFrame {
                 guiaView.setLocationRelativeTo(null);
             } else {
                 lblGuiaError.setText("No se encontró la guia "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero());
-                JOptionPane.showMessageDialog(this, "No se encontró la guia "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero(), 
-                        "Información", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se encontró la guia "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero(),
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
             }
-            
+
         } catch (IllegalArgumentException e) {
             lblGuiaError.setText("Error en los datos: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
@@ -966,6 +1182,39 @@ public class WelcomeView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuiaActionPerformed
 
+    private void btnVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoucherActionPerformed
+        try {
+            SupportConsultRequest supportConsultRequest = new SupportConsultRequest();
+            supportConsultRequest.setRucEmisor(txtComprobanteRucEmisor.getText().trim());
+            supportConsultRequest.setTipoComprobante(comprobanteMap.get((String) cmbComprobanteTipo.getSelectedItem()));
+            supportConsultRequest.setSerie(txtComprobanteSerie.getText().trim());
+            supportConsultRequest.setNumero(txtComprobanteNumero.getText().isEmpty() ? 0 : Integer.valueOf(txtComprobanteNumero.getText().trim()));
+            Validation.validarSolicitud(supportConsultRequest);
+
+            Optional<PaymentVoucherDto> optionalPaymentVoucher = CertifaktService.getPaymentVoucher(supportConsultRequest);
+            if(optionalPaymentVoucher.isPresent()) {
+                this.dispose();
+                PaymentVoucherView paymentVoucherView = new PaymentVoucherView(optionalPaymentVoucher.get());
+                paymentVoucherView.setVisible(true);
+                paymentVoucherView.setLocationRelativeTo(null);
+            } else {
+                lblCompanyError.setText("No se encontró el comprobante "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero());
+                JOptionPane.showMessageDialog(this, "No se encontró el comprobante "+supportConsultRequest.getSerie()+"-"+supportConsultRequest.getNumero(),
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (IllegalArgumentException e) {
+            lblVoucherError.setText("Error en los datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            lblVoucherError.setText("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al obtener el comprobante: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            lblVoucherError.setText("Error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnVoucherActionPerformed
+
     private void btnCompanyCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyCreateActionPerformed
         this.dispose();
         CreateCompanyView createCompanyView = new CreateCompanyView();
@@ -973,81 +1222,93 @@ public class WelcomeView extends javax.swing.JFrame {
         createCompanyView.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnCompanyCreateActionPerformed
 
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        ConfigFile.eliminarCredenciales();
-        LoginView loginView = new LoginView();
-        loginView.setVisible(true);
-        loginView.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
-
-    private void btnUserConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserConsultarActionPerformed
+    private void btnCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompanyActionPerformed
         try {
-            String ruc = txtUserRuc.getText();
-            List<UserDto2> userList = CertifaktService.getUserList(ruc);
-            Validation.validarString("Ruc", ruc);
-            if(!userList.isEmpty()) {
-                DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
-                model.setRowCount(0);
-                for (UserDto2 user : userList) {
-                    Object[] fila = {user.getUserID(), user.getDni(), user.getEstado(), user.getFullName(), user.getPassword(), user.getTypeUser(), user.getDeLogin(), 
-                        user.getChangePass(), user.getPdfUnico()};
-                    model.addRow(fila);
-                }
+            Optional<CompanyDto> optionalCompany = CertifaktService.getCompany(txtCompanyRuc.getText());
+
+            if (optionalCompany.isPresent()) {
+                this.dispose();
+                CompanyView companyView = new CompanyView(optionalCompany.get());
+                companyView.setVisible(true);
+                companyView.setLocationRelativeTo(null);
             } else {
-               DefaultTableModel model = (DefaultTableModel) jtUsers.getModel();
-               model.setRowCount(0);
-               lblUserError.setText("No existen usuarios asociados a la empresa en mención");
-               JOptionPane.showMessageDialog(this, "No existen usuarios asociados a la empresa en mención: "+ruc, 
-                        "Información", JOptionPane.INFORMATION_MESSAGE);
-            } 
+                lblCompanyError.setText("La empresa con ruc: "+txtCompanyRuc.getText()+ " no esta registrado en certifakt");
+                JOptionPane.showMessageDialog(this, "La empresa con ruc: "+txtCompanyRuc.getText()+ " no esta registrado en certifakt", "Información",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (IllegalArgumentException e) {
+            lblCompanyError.setText("Error en los datos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
+        } catch (IOException ex) {
+            lblCompanyError.setText("Error: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al obtener la empresa: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {
+            lblCompanyError.setText("Error inesperado: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCompanyActionPerformed
+
+    private void btnDescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescargarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDescargarActionPerformed
+
+    private void btnConsultarDescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarDescargaActionPerformed
+        try {
+            String desdeDay = (String) cbxDesdeDia.getSelectedItem();
+            String desdeMonth = this.obtenerMes((String) cbxDesdeMes.getSelectedItem());
+            String desdeYear = (String) cbxDesdeAño.getSelectedItem();
+            
+            String hastaDay = (String) cbxHastaDia.getSelectedItem();
+            String hastaMonth = this.obtenerMes((String) cbxHastaMonth.getSelectedItem());
+            String hastaYear = (String) cbxHastaYear.getSelectedItem();
+            
+            //Parameters
+            String ruc = txtRucDescarga.getText();
+            String fechaInicio = desdeYear+"-"+desdeMonth+"-"+desdeDay;
+            String fechaFinal = hastaYear+"-"+hastaMonth+"-"+hastaDay;
+            
+            System.out.println("Fecha Inicio: "+fechaInicio);
+            System.out.println("Fecha Final: "+fechaFinal);
+            
+            Optional<InfoDownloadDto> optionalInfo = CertifaktService.consultDataToDownload(ruc, fechaInicio, fechaFinal);
+            if(optionalInfo.isPresent()) {
+                InfoDownloadDto info = optionalInfo.get();
+                lblCliente.setText(info.getCliente());
+                lblCantidad.setText(String.valueOf(info.getCantidad()));
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontraron datos de: "+txtCompanyRuc.getText()+ "", "Información",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (IllegalArgumentException e) {
             lblTokenError.setText("Error en los datos: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         } catch (IOException ex) {
             lblTokenError.setText("Error: " + ex.getMessage());
-            JOptionPane.showMessageDialog(this, "Error al obtener los usuarios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al obtener la data: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
             lblTokenError.setText("Error inesperado: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-    }//GEN-LAST:event_btnUserConsultarActionPerformed
-
-    private void btnUserEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserEditarActionPerformed
-        int filaSeleccionada = jtUsers.getSelectedRow(); 
-
-        if (filaSeleccionada != -1) {
-            Long id = (Long) jtUsers.getValueAt(filaSeleccionada, 0);
-            String dni = (String) jtUsers.getValueAt(filaSeleccionada, 1);
-            Boolean estado = (Boolean) jtUsers.getValueAt(filaSeleccionada, 2);
-            String fullName = (String) jtUsers.getValueAt(filaSeleccionada, 3);
-            String password = (String) jtUsers.getValueAt(filaSeleccionada, 4);
-            String typeUser = (String) jtUsers.getValueAt(filaSeleccionada, 5);
-            String deLogin = (String) jtUsers.getValueAt(filaSeleccionada, 6);
-            Boolean changePass = (Boolean) jtUsers.getValueAt(filaSeleccionada, 7);
-            Boolean pdfUnico = (Boolean) jtUsers.getValueAt(filaSeleccionada, 8);
-
-            UserDto2 userSelected = new UserDto2(id, dni, estado, fullName, password, typeUser, deLogin, changePass, pdfUnico);
-  
-            System.out.println("Usuario seleccionado: " + userSelected);
-            UserView userView = new UserView(userSelected);
-            userView.setVisible(true);
-            userView.setLocationRelativeTo(null);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecciona una fila para continuar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }//GEN-LAST:event_btnConsultarDescargaActionPerformed
+    
+    private String obtenerMes(String mes) {
+        switch (mes) {
+            case "Enero": return "01";
+            case "Febrero": return "02";
+            case "Marzo": return "03";
+            case "Abril": return "04";
+            case "Mayo": return "05";
+            case "Junio": return "06";
+            case "Julio": return "07";
+            case "Agosto": return "08";
+            case "Septiembre": return "09";
+            case "Octubre": return "10";
+            case "Noviembre": return "11";
+            case "Diciembre": return "12";
+            default: return "-1";
         }
-    }//GEN-LAST:event_btnUserEditarActionPerformed
-
-    private void btnAutoPasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAutoPasteActionPerformed
-        String texto = jtaToken.getText(); // Obtener texto del JTextField
-        StringSelection stringSelection = new StringSelection(texto);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, null);
-
-        btnAutoPaste.setText("Copiado");
-    }//GEN-LAST:event_btnAutoPasteActionPerformed
+    }
     
     private void postEnvironment() {
         String url = ConfigFile.obtenerUrl();
@@ -1100,6 +1361,9 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JButton btnCompanies;
     private javax.swing.JButton btnCompany;
     private javax.swing.JButton btnCompanyCreate;
+    private javax.swing.JButton btnConsultarDescarga;
+    private javax.swing.JButton btnDescargar;
+    private javax.swing.JToggleButton btnDownloadPdf;
     private javax.swing.JButton btnGenerarToken;
     private javax.swing.JButton btnGuia;
     private javax.swing.JButton btnGuias;
@@ -1109,6 +1373,12 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnUsers;
     private javax.swing.JButton btnVoucher;
     private javax.swing.JButton btnVouchers;
+    private javax.swing.JComboBox<String> cbxDesdeAño;
+    private javax.swing.JComboBox<String> cbxDesdeDia;
+    private javax.swing.JComboBox<String> cbxDesdeMes;
+    private javax.swing.JComboBox<String> cbxHastaDia;
+    private javax.swing.JComboBox<String> cbxHastaMonth;
+    private javax.swing.JComboBox<String> cbxHastaYear;
     private javax.swing.JComboBox<String> cmbComprobanteTipo;
     private javax.swing.JComboBox<String> cmbGuiaTipo;
     private javax.swing.JButton jButton1;
@@ -1118,12 +1388,20 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1135,6 +1413,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel jpDownloads;
     private javax.swing.JPanel jpGuias;
     private javax.swing.JPanel jpTokens;
     private javax.swing.JPanel jpUsers;
@@ -1143,6 +1422,8 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JTable jtUsers;
     private javax.swing.JTextArea jtaToken;
     private javax.swing.JTabbedPane jtpMenu;
+    private javax.swing.JLabel lblCantidad;
+    private javax.swing.JLabel lblCliente;
     private javax.swing.JLabel lblCompany;
     private javax.swing.JLabel lblCompanyError;
     private javax.swing.JLabel lblCompanyError1;
@@ -1156,8 +1437,10 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblTokenError;
     private javax.swing.JLabel lblTokens;
     private javax.swing.JLabel lblTokens1;
+    private javax.swing.JLabel lblTokens2;
     private javax.swing.JLabel lblUserError;
     private javax.swing.JLabel lblUsers;
+    private javax.swing.JLabel lblUsers1;
     private javax.swing.JLabel lblVoucher1;
     private javax.swing.JLabel lblVoucherError;
     private javax.swing.JTextField txtCompanyRuc;
@@ -1168,6 +1451,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JTextField txtGuiaNumero;
     private javax.swing.JTextField txtGuiaRuc;
     private javax.swing.JTextField txtGuiaSerie;
+    private javax.swing.JTextField txtRucDescarga;
     private javax.swing.JTextField txtUserId;
     private javax.swing.JTextField txtUserRuc;
     // End of variables declaration//GEN-END:variables

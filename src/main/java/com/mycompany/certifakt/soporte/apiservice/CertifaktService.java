@@ -11,6 +11,7 @@ import com.mycompany.certifakt.soporte.payload.LoginRequest;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
+import com.mycompany.certifakt.soporte.payload.dto.InfoDownloadDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
 import com.mycompany.certifakt.soporte.payload.request.ChangePasswordRequest;
@@ -42,7 +43,7 @@ public class CertifaktService {
     private static final String CREAR_COMPANY_ENDPOINT = "api/auth/register";
     private static final String USER_ENDPOINT = "api/support/user";
     private static final String CHANGE_PASSWORD_ENDPOINT = "/changePassword";
-   
+    private static final String CONSULT_DOWNLOAD_ENDPOINT = "/consultar-descarga-pdf";
     
     public static Boolean login(String username, String password) {
         String API_URL = ConfigFile.obtenerUrl();
@@ -319,4 +320,25 @@ public class CertifaktService {
             throw e; 
         }
     }
+    
+    public static Optional<InfoDownloadDto> consultDataToDownload(String ruc, String fechaInicio, String fechaFinal) throws IOException {
+        String token = ConfigFile.obtenerToken();
+        String API_URL = ConfigFile.obtenerUrl();
+        Map<String, String> params = new HashMap<>();
+        params.put("ruc", ruc);
+        params.put("fechaInicio", fechaInicio);
+        params.put("fechaFinal", fechaFinal);
+        
+        try {
+            SupportResponse supportResponse = MethodHttp.get(API_URL+CONSULT_DOWNLOAD_ENDPOINT, params, token, SupportResponse.class);
+            if(supportResponse == null || supportResponse.getData() == null || supportResponse.getData().getInfoDownloadDto() == null) {
+                return Optional.empty();
+            }
+            return Optional.of(supportResponse.getData().getInfoDownloadDto());
+        } catch (CustomHttpException e) {
+            System.err.println("Error HTTP: " + e.getMessage());
+            return Optional.empty();
+        }
+    }
+    
 }

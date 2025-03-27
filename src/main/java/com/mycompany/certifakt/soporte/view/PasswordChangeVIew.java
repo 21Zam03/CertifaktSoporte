@@ -7,7 +7,6 @@ package com.mycompany.certifakt.soporte.view;
 import com.mycompany.certifakt.soporte.apiservice.CertifaktService;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
 import com.mycompany.certifakt.soporte.payload.request.ChangePasswordRequest;
-import com.mycompany.certifakt.soporte.payload.request.UserRequest;
 import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
 import java.awt.Cursor;
 import java.io.IOException;
@@ -15,7 +14,7 @@ import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class PasswordChangeView extends javax.swing.JFrame {
+class PasswordChangeView extends javax.swing.JFrame {
 
     private final Long idUser;
     private final UserDto2 userDto2;
@@ -42,6 +41,7 @@ public class PasswordChangeView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
         btnAtras = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
 
@@ -60,11 +60,17 @@ public class PasswordChangeView extends javax.swing.JFrame {
                 btnChangePasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(btnChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 140, 30));
+        jPanel1.add(btnChangePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 190, 30));
 
         jLabel1.setText("Nueva contraseña:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 330, -1));
-        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 330, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 360, -1));
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 390, 30));
 
         btnAtras.setText("Atras");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
@@ -72,11 +78,19 @@ public class PasswordChangeView extends javax.swing.JFrame {
                 btnAtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+        jPanel1.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, 70, -1));
 
+        jPanel2.setBackground(new java.awt.Color(0, 102, 204));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ID:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 20, 30));
-        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 300, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 20, 30));
+
+        lblId.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel2.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 330, 30));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 390, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +101,7 @@ public class PasswordChangeView extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -130,6 +144,10 @@ public class PasswordChangeView extends javax.swing.JFrame {
         userView.setLocationRelativeTo(null);        
     }//GEN-LAST:event_btnAtrasActionPerformed
 
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
     private void loadImageIcon() {
         ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/icono.png"));
         this.setIconImage(imageIcon.getImage());
@@ -143,6 +161,7 @@ public class PasswordChangeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblId;
     private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables

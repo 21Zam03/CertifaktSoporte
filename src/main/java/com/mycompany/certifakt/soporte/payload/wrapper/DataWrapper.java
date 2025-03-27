@@ -7,6 +7,7 @@ package com.mycompany.certifakt.soporte.payload.wrapper;
 import com.google.gson.annotations.SerializedName;
 import com.mycompany.certifakt.soporte.payload.dto.CompanyDto;
 import com.mycompany.certifakt.soporte.payload.dto.GuiaDto;
+import com.mycompany.certifakt.soporte.payload.dto.InfoDownloadDto;
 import com.mycompany.certifakt.soporte.payload.dto.PaymentVoucherDto;
 import com.mycompany.certifakt.soporte.payload.dto.UserDto2;
 import java.util.List;
@@ -21,7 +22,17 @@ public class DataWrapper {
     private GuiaDto guiaDto;
     
     private List<UserDto2> UserDtoList;
+    
+    private InfoDownloadDto infoDownloadDto;
 
+    public InfoDownloadDto getInfoDownloadDto() {
+        return infoDownloadDto;
+    }
+
+    public void setInfoDownloadDto(InfoDownloadDto infoDownloadDto) {
+        this.infoDownloadDto = infoDownloadDto;
+    }
+    
     public List<UserDto2> getUserDtoList() {
         return UserDtoList;
     }
