@@ -12,6 +12,7 @@ import com.mycompany.certifakt.soporte.payload.response.SupportResponse;
 import java.awt.Cursor;
 import java.io.IOException;
 import java.util.Optional;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class PasswordChangeView extends javax.swing.JFrame {
@@ -23,6 +24,8 @@ public class PasswordChangeView extends javax.swing.JFrame {
         this.idUser = userDto2.getUserID();
         this.userDto2 = userDto2;
         initComponents();
+        loadImageIcon();
+        this.setResizable(false);
         btnAtras.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnChangePassword.setCursor(new Cursor(Cursor.HAND_CURSOR));
         lblId.setText(String.valueOf(this.idUser));
@@ -124,10 +127,14 @@ public class PasswordChangeView extends javax.swing.JFrame {
         this.dispose();
         UserView userView = new UserView(this.userDto2);
         userView.setVisible(true);
-        userView.setLocationRelativeTo(null);
-        
+        userView.setLocationRelativeTo(null);        
     }//GEN-LAST:event_btnAtrasActionPerformed
 
+    private void loadImageIcon() {
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/icono.png"));
+        this.setIconImage(imageIcon.getImage());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnChangePassword;
