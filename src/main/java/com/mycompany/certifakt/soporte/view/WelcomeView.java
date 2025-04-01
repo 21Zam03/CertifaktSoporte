@@ -1149,13 +1149,13 @@ public class WelcomeView extends javax.swing.JFrame {
                     "Información", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (IllegalArgumentException e) {
-            lblTokenError.setText("Error en los datos: " + e.getMessage());
+            lblUserError.setText("Error en los datos: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
         } catch (IOException ex) {
-            lblTokenError.setText("Error: " + ex.getMessage());
+            lblUserError.setText("Error: " + ex.getMessage());
             JOptionPane.showMessageDialog(this, "Error al obtener los usuarios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            lblTokenError.setText("Error inesperado: " + e.getMessage());
+            lblUserError.setText("Error inesperado: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
@@ -1318,6 +1318,8 @@ public class WelcomeView extends javax.swing.JFrame {
             System.out.println("Fecha Inicio: "+fechaInicio);
             System.out.println("Fecha Final: "+fechaFinal);
             
+            Validation.validarString("Ruc", ruc);
+            
             Optional<InfoDownloadDto> optionalInfo = CertifaktService.consultDataToDownload(ruc, fechaInicio, fechaFinal, size);
             if(optionalInfo.isPresent()) {
                 InfoDownloadDto info = optionalInfo.get();
@@ -1326,20 +1328,17 @@ public class WelcomeView extends javax.swing.JFrame {
                 lblCantidad.setText(String.valueOf(info.getCantidad()));
                 lblTotalDescargas.setText(String.valueOf(info.getTotalDescargas()));
                 for (int i = 0; i < info.getLinksDescargas().size(); i++) {
-                    txtLinks.append(info.getLinksDescargas().get(i)+" - ");
+                    txtLinks.append(info.getLinksDescargas().get(i) + "\n");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "No se encontraron datos de: "+txtCompanyRuc.getText()+ "", "Información",
+                JOptionPane.showMessageDialog(this, "No se encontraron datos del ruc: "+txtRucDescarga.getText()+ "", "Información",
                     JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (IllegalArgumentException e) {
-            lblTokenError.setText("Error en los datos: " + e.getMessage());
+        } catch (IllegalArgumentException e) {  
             JOptionPane.showMessageDialog(this, "Error en los datos ingresados: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE);
-        } catch (IOException ex) {
-            lblTokenError.setText("Error: " + ex.getMessage());
+        } catch (IOException ex) {    
             JOptionPane.showMessageDialog(this, "Error al obtener la data: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
-            lblTokenError.setText("Error inesperado: " + e.getMessage());
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnConsultarDescargaActionPerformed
