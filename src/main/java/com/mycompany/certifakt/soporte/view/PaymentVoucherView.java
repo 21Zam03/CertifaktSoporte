@@ -64,6 +64,8 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         txtMontoTotalVenta.setText(paymentVoucher.getMontoTotalVenta().toString());
         cmbEstado.setSelectedItem(paymentVoucher.getEstado());
         cmbEstadoSunat.setSelectedItem(paymentVoucher.getEstadoSunat());
+        txtCodigoSunat.setText(paymentVoucher.getCodigoRespuestaSunat());
+        txtMensajeRespuesta.setText(paymentVoucher.getMensajeRespuesta());
     }
 
     @SuppressWarnings("unchecked")
@@ -97,6 +99,12 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
         txtDenominacionReceptor = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        txtCodigoSunat = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtMensajeRespuesta = new javax.swing.JTextArea();
         btnGuardar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -131,27 +139,27 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         jLabel3.setText("Tipo Comprobante:");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, 20));
         jPanel2.add(txtSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 280, -1));
-        jPanel2.add(txtNumeroReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 280, -1));
-        jPanel2.add(txtMontoTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 270, -1));
+        jPanel2.add(txtNumeroReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 280, -1));
+        jPanel2.add(txtMontoTotalVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 270, -1));
 
-        jPanel2.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 270, -1));
+        jPanel2.add(cmbEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 270, -1));
 
-        jPanel2.add(cmbEstadoSunat, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 270, -1));
+        jPanel2.add(cmbEstadoSunat, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 150, 270, -1));
 
         lblSerie.setText("Serie:");
         jPanel2.add(lblSerie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 140, 20));
 
         jLabel5.setText("D. Receptor:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 120, 20));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 120, 20));
 
         jLabel6.setText("MontoTotal:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 100, 120, 20));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 120, 20));
 
         jLabel7.setText("Estado:");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 120, 20));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 120, 20));
 
-        jLabel8.setText("Estado Sunat:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 120, 20));
+        jLabel8.setText("Mensaje Respuesta:");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 140, 20));
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -176,20 +184,34 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 40));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 960, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 960, 10));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 83, 960, 10));
         jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 960, 10));
 
         lblNumDocIdentReceptor.setText("N° Receptor:");
-        jPanel2.add(lblNumDocIdentReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 160, 20));
+        jPanel2.add(lblNumDocIdentReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 160, 20));
         jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 960, 10));
 
         jLabel10.setText("Numero:");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 160, 20));
         jPanel2.add(txtNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 200, 280, -1));
-        jPanel2.add(txtDenominacionReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 270, -1));
+        jPanel2.add(txtDenominacionReceptor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, 280, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 960, 300));
+        jLabel15.setText("Codigo Sunat:");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 140, 20));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 960, 10));
+
+        jLabel16.setText("Estado Sunat:");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 120, 20));
+        jPanel2.add(txtCodigoSunat, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, 270, -1));
+
+        txtMensajeRespuesta.setColumns(20);
+        txtMensajeRespuesta.setRows(5);
+        jScrollPane1.setViewportView(txtMensajeRespuesta);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, 270, 60));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 960, 380));
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -197,32 +219,32 @@ public class PaymentVoucherView extends javax.swing.JFrame {
                 btnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, 100, 30));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("08: Anulado");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 110, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 560, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 204, 204));
         jLabel9.setText("01: No enviado");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 120, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 120, -1));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("02: Aceptado");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 140, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, 140, -1));
 
         jLabel13.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(204, 204, 204));
         jLabel13.setText("05: Rechazado");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 140, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 140, -1));
 
         jLabel14.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(204, 204, 204));
         jLabel14.setText("06: Error");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 140, -1));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 540, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -234,7 +256,9 @@ public class PaymentVoucherView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -311,6 +335,8 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -322,14 +348,18 @@ public class PaymentVoucherView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JLabel lblNumDocIdentReceptor;
     private javax.swing.JLabel lblSerie;
+    private javax.swing.JTextField txtCodigoSunat;
     private javax.swing.JTextField txtDenominacionReceptor;
     private javax.swing.JTextField txtFechaEmision;
+    private javax.swing.JTextArea txtMensajeRespuesta;
     private javax.swing.JTextField txtMontoTotalVenta;
     private javax.swing.JTextField txtNumero;
     private javax.swing.JTextField txtNumeroReceptor;

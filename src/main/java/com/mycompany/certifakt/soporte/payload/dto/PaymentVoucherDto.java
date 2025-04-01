@@ -16,6 +16,8 @@ public class PaymentVoucherDto {
     private Double montoTotalVenta;
     private String estado;
     private String estadoSunat;
+    private String codigoRespuestaSunat;
+    private String mensajeRespuesta;
 
     public PaymentVoucherDto() {
     }
@@ -100,6 +102,20 @@ public class PaymentVoucherDto {
         this.estadoSunat = estadoSunat;
     }
 
-    
+    public String getCodigoRespuestaSunat() {
+        return codigoRespuestaSunat;
+    }
+
+    public void setCodigoRespuestaSunat(String codigoRespuestaSunat) {
+        this.codigoRespuestaSunat = codigoRespuestaSunat;
+    }
+
+    public String getMensajeRespuesta() {
+        return mensajeRespuesta;
+    }
+
+    public void setMensajeRespuesta(String mensajeRespuesta) {
+        this.mensajeRespuesta = mensajeRespuesta;
+    }
     
 }

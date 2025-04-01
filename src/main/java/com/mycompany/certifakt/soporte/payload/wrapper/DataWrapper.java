@@ -23,6 +23,7 @@ public class DataWrapper {
     
     private List<UserDto2> UserDtoList;
     
+    @SerializedName("InfoDownloadDto")
     private InfoDownloadDto infoDownloadDto;
 
     public InfoDownloadDto getInfoDownloadDto() {

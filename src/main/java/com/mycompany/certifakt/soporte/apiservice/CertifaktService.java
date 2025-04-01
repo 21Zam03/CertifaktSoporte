@@ -43,7 +43,7 @@ public class CertifaktService {
     private static final String CREAR_COMPANY_ENDPOINT = "api/auth/register";
     private static final String USER_ENDPOINT = "api/support/user";
     private static final String CHANGE_PASSWORD_ENDPOINT = "/changePassword";
-    private static final String CONSULT_DOWNLOAD_ENDPOINT = "/consultar-descarga-pdf";
+    private static final String CONSULT_DOWNLOAD_ENDPOINT = "api/support/consultar-descarga-pdf";
     
     public static Boolean login(String username, String password) {
         String API_URL = ConfigFile.obtenerUrl();
@@ -321,13 +321,14 @@ public class CertifaktService {
         }
     }
     
-    public static Optional<InfoDownloadDto> consultDataToDownload(String ruc, String fechaInicio, String fechaFinal) throws IOException {
+    public static Optional<InfoDownloadDto> consultDataToDownload(String ruc, String fechaInicio, String fechaFinal, Integer size) throws IOException {
         String token = ConfigFile.obtenerToken();
         String API_URL = ConfigFile.obtenerUrl();
         Map<String, String> params = new HashMap<>();
         params.put("ruc", ruc);
         params.put("fechaInicio", fechaInicio);
         params.put("fechaFinal", fechaFinal);
+        params.put("size", String.valueOf(size));
         
         try {
             SupportResponse supportResponse = MethodHttp.get(API_URL+CONSULT_DOWNLOAD_ENDPOINT, params, token, SupportResponse.class);

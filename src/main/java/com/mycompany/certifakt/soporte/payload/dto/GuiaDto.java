@@ -19,7 +19,9 @@ public class GuiaDto {
     private Double pesoTotal;
     private String estado;
     private String estadoSunat;
-
+    private String codigoRespuestaSunat;
+    private String mensajeRespuesta;
+    
     public GuiaDto() {
     }
 
@@ -117,6 +119,22 @@ public class GuiaDto {
 
     public void setEstadoSunat(String estadoSunat) {
         this.estadoSunat = estadoSunat;
+    }
+
+    public String getCodigoRespuestaSunat() {
+        return codigoRespuestaSunat;
+    }
+
+    public void setCodigoRespuestaSunat(String codigoRespuestaSunat) {
+        this.codigoRespuestaSunat = codigoRespuestaSunat;
+    }
+
+    public String getMensajeRespuesta() {
+        return mensajeRespuesta;
+    }
+
+    public void setMensajeRespuesta(String mensajeRespuesta) {
+        this.mensajeRespuesta = mensajeRespuesta;
     }
 
     @Override

@@ -78,7 +78,7 @@ public class WelcomeView extends javax.swing.JFrame {
         btnGuias.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnTokens.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnUsers.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
+        btnDownloadPdf.setCursor(new Cursor(Cursor.HAND_CURSOR));
         /*3 part*/
         //Company
         btnCompany.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -181,10 +181,16 @@ public class WelcomeView extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnDescargar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         lblCliente = new javax.swing.JLabel();
+        lblTotal = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtLinks = new javax.swing.JTextArea();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         lblCantidad = new javax.swing.JLabel();
+        lblTotalDescargas = new javax.swing.JLabel();
         cbxDesdeAño = new javax.swing.JComboBox<>();
         cbxDesdeDia = new javax.swing.JComboBox<>();
         cbxDesdeMes = new javax.swing.JComboBox<>();
@@ -194,6 +200,7 @@ public class WelcomeView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnConsultarDescarga = new javax.swing.JButton();
+        cmbSize = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         lblLogo = new javax.swing.JLabel();
         txtEnvironment = new javax.swing.JLabel();
@@ -755,7 +762,13 @@ public class WelcomeView extends javax.swing.JFrame {
         );
 
         jPanel14.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 40));
-        jPanel14.add(txtRucDescarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 700, 30));
+
+        txtRucDescarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRucDescargaActionPerformed(evt);
+            }
+        });
+        jPanel14.add(txtRucDescarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 580, 30));
 
         jPanel16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -763,16 +776,25 @@ public class WelcomeView extends javax.swing.JFrame {
 
         jLabel6.setText("INFORMACION:");
 
-        btnDescargar.setBackground(new java.awt.Color(0, 102, 204));
-        btnDescargar.setForeground(new java.awt.Color(255, 255, 255));
-        btnDescargar.setText("Descagar");
-        btnDescargar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDescargarActionPerformed(evt);
-            }
-        });
+        jLabel9.setText("Links:");
 
-        jLabel9.setText("Cantidad de comprobantes:");
+        lblCliente.setForeground(new java.awt.Color(153, 153, 153));
+
+        lblTotal.setForeground(new java.awt.Color(153, 153, 153));
+
+        jLabel10.setText("Cantidad:");
+
+        txtLinks.setColumns(20);
+        txtLinks.setRows(5);
+        jScrollPane3.setViewportView(txtLinks);
+
+        jLabel11.setText("Total:");
+
+        jLabel15.setText("Total descargas:");
+
+        lblCantidad.setForeground(new java.awt.Color(153, 153, 153));
+
+        lblTotalDescargas.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -781,41 +803,64 @@ public class WelcomeView extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                        .addGap(0, 692, Short.MAX_VALUE)
-                        .addComponent(btnDescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                            .addComponent(lblCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel16Layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(jPanel16Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(48, 48, 48)))
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                            .addComponent(lblTotalDescargas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel16Layout.createSequentialGroup()
-                        .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(btnDescargar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel16Layout.createSequentialGroup()
+                                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel16Layout.createSequentialGroup()
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel16Layout.createSequentialGroup()
+                                        .addComponent(lblCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCantidad, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel16Layout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTotalDescargas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3))
+                .addGap(24, 24, 24))
         );
 
         jPanel14.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 830, 220));
@@ -853,6 +898,9 @@ public class WelcomeView extends javax.swing.JFrame {
             }
         });
         jPanel14.add(btnConsultarDescarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 120, 30));
+
+        cmbSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "25", "50", "100", "500" }));
+        jPanel14.add(cmbSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 60, 110, 30));
 
         javax.swing.GroupLayout jpDownloadsLayout = new javax.swing.GroupLayout(jpDownloads);
         jpDownloads.setLayout(jpDownloadsLayout);
@@ -1249,12 +1297,11 @@ public class WelcomeView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCompanyActionPerformed
 
-    private void btnDescargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescargarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDescargarActionPerformed
-
     private void btnConsultarDescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarDescargaActionPerformed
+        txtLinks.setText("");
         try {
+            Integer size = Integer.valueOf((String) cmbSize.getSelectedItem());
+            System.out.println("SIZE: "+size);
             String desdeDay = (String) cbxDesdeDia.getSelectedItem();
             String desdeMonth = this.obtenerMes((String) cbxDesdeMes.getSelectedItem());
             String desdeYear = (String) cbxDesdeAño.getSelectedItem();
@@ -1271,11 +1318,16 @@ public class WelcomeView extends javax.swing.JFrame {
             System.out.println("Fecha Inicio: "+fechaInicio);
             System.out.println("Fecha Final: "+fechaFinal);
             
-            Optional<InfoDownloadDto> optionalInfo = CertifaktService.consultDataToDownload(ruc, fechaInicio, fechaFinal);
+            Optional<InfoDownloadDto> optionalInfo = CertifaktService.consultDataToDownload(ruc, fechaInicio, fechaFinal, size);
             if(optionalInfo.isPresent()) {
                 InfoDownloadDto info = optionalInfo.get();
                 lblCliente.setText(info.getCliente());
+                lblTotal.setText(String.valueOf(info.getTotal()));
                 lblCantidad.setText(String.valueOf(info.getCantidad()));
+                lblTotalDescargas.setText(String.valueOf(info.getTotalDescargas()));
+                for (int i = 0; i < info.getLinksDescargas().size(); i++) {
+                    txtLinks.append(info.getLinksDescargas().get(i)+" - ");
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontraron datos de: "+txtCompanyRuc.getText()+ "", "Información",
                     JOptionPane.INFORMATION_MESSAGE);
@@ -1291,6 +1343,10 @@ public class WelcomeView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnConsultarDescargaActionPerformed
+
+    private void txtRucDescargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRucDescargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRucDescargaActionPerformed
     
     private String obtenerMes(String mes) {
         switch (mes) {
@@ -1362,7 +1418,6 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JButton btnCompany;
     private javax.swing.JButton btnCompanyCreate;
     private javax.swing.JButton btnConsultarDescarga;
-    private javax.swing.JButton btnDescargar;
     private javax.swing.JToggleButton btnDownloadPdf;
     private javax.swing.JButton btnGenerarToken;
     private javax.swing.JButton btnGuia;
@@ -1381,11 +1436,15 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxHastaYear;
     private javax.swing.JComboBox<String> cmbComprobanteTipo;
     private javax.swing.JComboBox<String> cmbGuiaTipo;
+    private javax.swing.JComboBox<String> cmbSize;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1412,6 +1471,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel jpDownloads;
     private javax.swing.JPanel jpGuias;
@@ -1438,6 +1498,8 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblTokens;
     private javax.swing.JLabel lblTokens1;
     private javax.swing.JLabel lblTokens2;
+    private javax.swing.JLabel lblTotal;
+    private javax.swing.JLabel lblTotalDescargas;
     private javax.swing.JLabel lblUserError;
     private javax.swing.JLabel lblUsers;
     private javax.swing.JLabel lblUsers1;
@@ -1451,6 +1513,7 @@ public class WelcomeView extends javax.swing.JFrame {
     private javax.swing.JTextField txtGuiaNumero;
     private javax.swing.JTextField txtGuiaRuc;
     private javax.swing.JTextField txtGuiaSerie;
+    private javax.swing.JTextArea txtLinks;
     private javax.swing.JTextField txtRucDescarga;
     private javax.swing.JTextField txtUserId;
     private javax.swing.JTextField txtUserRuc;
